@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 import { ethers } from "ethers";
+import contactAbi from "./abi.json";
 function App() {
   const [wallets, setWallets] = useState();
 
