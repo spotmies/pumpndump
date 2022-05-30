@@ -1,0 +1,75 @@
+.home-page{
+    background-image: url("./images/background.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 300vh;
+    font-family: "Wimpy";
+    width: 100%;
+    .heading{
+        width: 100%;
+      
+        display: flex;
+        flex-direction: row;
+        font-size: 56px;
+        // align div center horizontally
+        justify-content: center;
+
+        .head1{
+            text-align: center;
+            color: rgb(53, 207, 53);
+            font-weight: 600;
+        }
+        .head2{
+            color: rgb(37, 34, 34);
+            padding-top: 5px;
+            margin-left: 10px;
+            margin-right: 10px;
+            font-weight: 600;
+
+        }
+        .head3{
+            color: rgb(222, 60, 60);
+            font-weight: 600;
+        }
+    }
+
+    .section-1{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        .part-1{
+            padding-left: 5%;
+            width: 30%;
+            .side-head{
+                font-size: 34px;
+                font-weight: 600;
+                color: rgb(22, 46, 198);
+                height: 100px;
+                .side-heading{
+                    margin: 0px !important;
+                    padding-bottom: 4px;
+                }
+                .green-line{
+                    border: 1px solid rgb(37, 255, 73);
+                    width: 160px;
+                    margin-left: 0;
+                    margin: 0px !important;
+                 
+                }
+                .red-line{
+                    border: 1px solid rgb(255, 44, 44);
+                        width: 160px;
+                        margin-left: 15px;
+                        margin: 0px !important;
+                }
+            }
+        }
+        .part-2{
+            width: 70%;
+            font-size: 26px;
+            .paras{
+                width: 90%;
+            }
+        }
+    }
+}
