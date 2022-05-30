@@ -69,7 +69,29 @@
             font-size: 26px;
             .paras{
                 width: 90%;
+                .div-row{
+                    justify-content: space-between;
+                    .star-content{
+                        width: 40%;
+                        p{
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
             }
         }
     }
+}
+.red-color-text{
+    color: rgb(255, 44, 44);
+}
+.blue-color-text{
+    color: rgb(22, 46, 198);
+}
+.green-color-text{
+    color: rgb(37, 255, 73);
+}
+.div-row{
+    display: flex;
+    flex-direction: row;
 }
