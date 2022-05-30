@@ -24,7 +24,7 @@ function App() {
     }
   }
 
-  const contractAddress = '0x5657d201c68F5259054E62595748b014FE46cb65';
+  const contractAddress = '0x928bDD7340c172B40c86036920E25E592EeEA9c6';
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractabi, signer);
@@ -40,6 +40,12 @@ function App() {
     });
     
     console.log(result);
+  }
+
+  const updateBaseURI = async() => {
+    console.log("baseuri updated");
+    const updated = await contract.setBaseURI("ipfs://QmcUhb1cUuik5nwHArp6RwoiG47xY2ewyUSqzh2DmdZuWY/");
+    console.log(updated);
   }
  
   // async function connectWallet() {
@@ -69,8 +75,12 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <button class="button button4"  onClick={requestAccount}>Connect</button>
-        <button class="button button4"  onClick={mintToken}>Mint</button>
+        <button className="button button4"  onClick={requestAccount}>Connect</button>
+        <button className="button button4"  onClick={mintToken}>Mint</button>
+        <form onSubmit={updateBaseURI}>
+          <input type="text" placeholder="Enter new baseURI"></input>
+          <button type="submit">Submit</button>
+        </form>
       </header>
     </div>
   );
