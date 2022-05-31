@@ -13,11 +13,11 @@ export default function HomePage() {
     },
     {
       q: "Day 3",
-      ans: "Stop undercuttin Eachother A*SH*LEs, we have plan.. List at .2 or higher",
+      ans: "Stop undercuttin Eachother A*SH*LEs, we have plan.. List at 0.2 or higher",
     },
     {
       q: "Day 4",
-      ans: "Alright it feels good to stay in top 20 for 4 days Straight..list at .5 now!!",
+      ans: "Alright it feels good to stay in top 20 for 4 days Straight..list at 0.5 now!!",
     },
     {
       q: "Day 5",
@@ -25,7 +25,7 @@ export default function HomePage() {
     },
     {
       q: "Day 6",
-      ans: "If everything is going according to plan we'll be at 1.5 Eth by now… if not, list it at 1.5 eth ot more",
+      ans: "If everything is going according to plan we'll be at 1.5 Eth by now… if not, list it at 1.5 eth or more",
     },
     {
       q: "Day 7",
@@ -70,9 +70,9 @@ export default function HomePage() {
   return (
     <div className="home-page">
       <div className="heading">
-        <p className="head1">PUM</p>
-        <p className="head2">pend</p>
-        <p className="head3">UMP</p>
+        <p className="head1 green-color-text">PUM</p>
+        <p className="head2 black-color-text">pend</p>
+        <p className="head3 red-color-text">UMP</p>
       </div>
       <div className="section-1">
         <div className="part-1">
@@ -98,11 +98,6 @@ export default function HomePage() {
               goes back to marketing, we have to pump pump pump ...
             </p>
             <p>
-              The roadmao willbe revealed day by day... for seven days ... just
-              like annoucements on discord ... so don't forget to check for
-              roadmap updates for seven days after mint.
-            </p>
-            <p>
               The roadmap will be revealed day by day…for seven days….just like
               announcements on discord…so don't forget to check for roadmap
               updates for seven days after mint.
@@ -124,8 +119,19 @@ export default function HomePage() {
               </div>
               <div className="star-content">
                 <p className="red-color-text">
-                  ***Enough with that Goblin shit <br></br>
-                  <u className="blue-color-text">mint</u> the Real Pump ***
+                  <span className="star-font">***</span> Enough with that{" "}
+                  <span className="green-color-text">Goblin</span> sheit
+                  <br></br>
+                  {/* <u className="blue-color-text pointer">mint</u> */}
+                  <span className="span-row">
+                    <span className="mint-parent">
+                      <span className="mint-name blue-color-text">mint</span>
+                      <hr className="mint-line" />
+                    </span>
+                    <p>
+                      the Real Pump <span className="star-font">***</span>
+                    </p>
+                  </span>
                 </p>
               </div>
             </div>
@@ -199,7 +205,7 @@ export default function HomePage() {
           <div className="center-div">
             <div className="creator">
               <p>Hope you made some money!! Over and out!</p>
-              <p className="creator-name">-Natoshi sakamabas</p>
+              <p className="creator-name">-Natoshi sakamabals</p>
             </div>
           </div>
         </div>
