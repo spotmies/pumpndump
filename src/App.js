@@ -3,6 +3,9 @@ import {useState} from "react";
 import contractabi from "./abi.json";
 import { ethers } from "ethers";
 import "./App.css";
+import { useState } from "react";
+import { ethers } from "ethers";
+import contractAbi from "./abi.json";
 
 function App() {
   // const [wallets, setWallets] = useState();

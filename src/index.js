@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -5,19 +6,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 =======
+=======
+>>>>>>> 13e8a9632ac6128240aa5036033f79ec311e9f6e
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import Main from "./main";
 import reportWebVitals from "./reportWebVitals";
+<<<<<<< HEAD
 // import 'semantic-ui-css/semantic.min.css';
 >>>>>>> Stashed changes
+=======
+>>>>>>> 13e8a9632ac6128240aa5036033f79ec311e9f6e
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Main />
   </React.StrictMode>
 );
 
