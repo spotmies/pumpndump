@@ -2,11 +2,14 @@ import React from "react";
 import "./home.scss";
 import image from "./images/graph.svg";
 import NumberInput from "./numberInput";
+import contractabi from "../abi.json";
+import {useState} from "react";
+import { ethers } from "ethers";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export default function HomePage() {
-  const [open, setOpen] = React.useState(false);
-  const [mintStart, setMintStart] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [mintStart, setMintStart] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -76,6 +79,47 @@ export default function HomePage() {
       </div>
     );
   };
+
+  async function requestAccount() {
+    if(window.ethereum) {
+      console.log("Metamask Detected");
+ 
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        // setWallets(accounts[0]);
+      } catch (error) {
+         console.log("Error connecting....");
+      }
+    } else {
+      console.log("Metamask not detected");
+    }
+  }
+
+  const contractAddress = '0x928bDD7340c172B40c86036920E25E592EeEA9c6';
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(contractAddress, contractabi, signer);
+  const [supply, setSupply] = useState();
+
+  const mintToken = async () => {
+    const connection = contract.connect(signer);
+    // const addr = connection.address;
+    // const supply = await contract.suppliedNFTs();
+    // setSupply(supply);
+    const result = await contract.mint("3", {
+      value: ethers.utils.parseEther('0'),
+    });
+    
+    console.log(result);
+  }
+
+  const clickedMint = () => { 
+     requestAccount();
+     mintToken();
+  }
+
   return (
     <div className="home-page">
       <div className="heading">
@@ -173,7 +217,7 @@ export default function HomePage() {
         <div className="mint-text">
           <p className="red-color-text">Set your max mints upto 3.</p>
           <NumberInput />
-          <p className="red-color-text">To get pump click  <span className="mint-parent">
+          <p className="red-color-text">To get pump click  <span className="mint-parent" onClick={clickedMint}>
                       <span className="mint-name blue-color-text"><a>mint</a><hr className="mint-line" /></span>
                       
                     </span></p>
