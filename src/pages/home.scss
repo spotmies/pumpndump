@@ -1,5 +1,7 @@
 .home-page{
-    background-image: url("./images/paper2.png");
+    // background-image: url("./images/paper2.png");
+    // background-image: url("./images/background.gif");
+    animation: image 8s infinite alternate;
     background-size: cover;
     background-position: center;
     opacity: 0.7;
@@ -90,6 +92,21 @@
         margin-left: 20px;
     }
 }
+}
+@keyframes image {
+    0% {
+        background-image: url("./images/p1.png");
+    }
+
+   33% {
+       background-image: url("./images/p2.png");
+   }
+         66% {
+             background-image: url("./images/p3.png");
+         }
+                   100% {
+                       background-image: url("./images/p4.png");
+                   }
 }
 .text-center{
     text-align: center;
@@ -212,11 +229,34 @@ input[type=number], input[type=number]:focus {
             margin-top: -30px;
             padding-bottom: 20px;
         }
+
     }
+                        .arrow-text {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+            
+                            img {
+                                width: 50px;
+                                height: 20px;
+                                margin-top: -25px;
+                                margin-right: 22px;
+                            }
+                            .span-row{
+                                margin-left: -50px !important;
+                                .mint-parent{
+                                    margin-top: 20px;
+                                    margin-left: 10px;
+                                    .mint-line{
+                                    border: 1.5px solid #0044ff;
+                                    }
+                                }
+                            }
+                        }
 }
 
 .popup-content {
-    width: 500px;
+    width: 600px;
     height: 400px;
     background-image: url("./images/paper2.png");
     background-size: cover;
@@ -238,18 +278,49 @@ input[type=number], input[type=number]:focus {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-top: -50px;
+        margin-top: -20px;
         p {
             font-size: 40px;
             margin-top: 20px;
         }
     }
-
-    .close-btn {
-        text-align: right;
-        padding-right: 20px;
-        cursor: pointer;
+    .close-btn-parent{
+        margin-top: 20px;
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        // margin-top: -20px;
+        .close-btn{
+            height: 30px;
+            width: 30px;
+            margin-right: 20px;
+            // margin-top: -20px;
+            cursor: pointer;
+        }
     }
+.count-down{
+    .span-row{
+        width: fit-content;
+        margin: 0 auto;
+        .mint-parent{
+            width: fit-content;
+            height: 90px;
+        }
+        .mint-line{
+            border: 1.5px solid #0044ff;
+            width: 217px;
+            margin-top: 2px;
+            transform: rotate(176deg);
+        }
+    }
+}
+
+    // .close-btn {
+    //     text-align: right;
+    //     padding-right: 20px;
+    //     cursor: pointer;
+    // }
 }
 
 .num-div {
@@ -257,11 +328,12 @@ input[type=number], input[type=number]:focus {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid #0044ff;
+    border-bottom: 4px solid #0044ff;
     width: fit-content;
     height: 40px;
     float: right;
     position: relative;
+    font-family: "Wimpy";
     // margin-top: 20px;
     .num-btn {
         width: 50px;
@@ -275,14 +347,29 @@ input[type=number], input[type=number]:focus {
     }
     p {
         cursor: pointer;
+        font-family: "Wimpy";
+       
+        
+    }
+    .plus-text{
+        transform: rotate(-40deg);
+        font-size: 55px !important;
+    }
+    .minus-text{
+        transform: rotate(176deg);
+        font-size: 55px !important;
     }
 
     .num-space {
         width: 70px;
         height: 40px;
+        font-size: 28px;
+        color: #0044ff;
         text-align: center;
         background: none;
         margin-top: -20px;
+        font-weight: bold;
+        font-family: "Wimpy";
     }
   input:focus {
       outline: none;

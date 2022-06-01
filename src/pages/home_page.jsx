@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./home.scss";
 import image from "./images/graph.svg";
 import NumberInput from "./numberInput";
@@ -7,43 +7,17 @@ import contractabi from "../abi.json";
 import { ethers } from "ethers";
 import tick from "./images/tick.png";
 import loader from "./images/loader.png";
+import closeButton from "./images/close_button.png";
+import arrow from "./images/bullet_arrow.png";
+import TimeCountDown from "./time_count_down";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
-
-/* ------------------------------ TIMER METHODS ----------------------------- */
-// const futureDate = new Date(2022, 6, 6, 9, 30, 0);
-const gmtValue = new Date().toString().slice(25, 33);
-const futureDate = new Date(`Sat Jun 06 2022 09:30:00 ${gmtValue}`);
-const getDateDiff = (date1, date2) => {
-  const diff = new Date(date2.getTime() - date1.getTime());
-  return {
-    year: diff.getUTCFullYear() - 1970,
-    month: diff.getUTCMonth(),
-    day: diff.getUTCDate() - 1,
-    hour: diff.getUTCHours(),
-    minute: diff.getUTCMinutes(),
-    second: diff.getUTCSeconds(),
-  };
-};
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
-  const [mintStart, setMintStart] = useState(true);
+  const [mintStart, setMintStart] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  /* ------------------------------ TIMER METHODS ----------------------------- */
-
-  const [diff, setDiff] = useState({});
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDiff(getDateDiff(new Date(), futureDate));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  /* ---------------------------------- XXXX ---------------------------------- */
 
   const roadMapList = [
     {
@@ -112,23 +86,23 @@ export default function HomePage() {
   };
 
   async function requestAccount() {
-    if(window.ethereum) {
+    if (window.ethereum) {
       console.log("Metamask Detected");
- 
+
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         // setWallets(accounts[0]);
       } catch (error) {
-         console.log("Error connecting....");
+        console.log("Error connecting....");
       }
     } else {
       console.log("Metamask not detected");
     }
   }
 
-  const contractAddress = '0x928bDD7340c172B40c86036920E25E592EeEA9c6';
+  const contractAddress = "0x928bDD7340c172B40c86036920E25E592EeEA9c6";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractabi, signer);
@@ -139,16 +113,16 @@ export default function HomePage() {
     // const supply = await contract.suppliedNFTs();
     // setSupply(supply);
     const result = await contract.mint("3", {
-      value: ethers.utils.parseEther('0'),
+      value: ethers.utils.parseEther("0"),
     });
-    
-    console.log(result);
-  }
 
-  const clickedMint = () => { 
-     requestAccount();
-     mintToken();
-  }
+    console.log(result);
+  };
+
+  const clickedMint = () => {
+    requestAccount();
+    mintToken();
+  };
 
   return (
     <div className="home-page">
@@ -238,40 +212,63 @@ export default function HomePage() {
         </div>
       </div>
 
-      {open ? 
+      {open ? (
         <div className="popup">
           <div className="popup-content">
-            <p className="close-btn" onClick={handleClose}>
+            {/* <p className="close-btn" onClick={handleClose}>
               X
-            </p>
+            </p> */}
+            <div className="close-btn-parent">
+              <img
+                className="close-btn"
+                src={closeButton}
+                alt="close"
+                onClick={handleClose}
+              />
+            </div>
+
             {!mintStart ? (
-              <div>
-                <h2 className="red-color-text">Your Minting will start in</h2>
-                <h2 className="blue-color-text">
-                  {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
-                </h2>
-                <p className="red-color-text">
-                  Hold your piss for some more time.
-                </p>
-              </div>
+              <TimeCountDown />
             ) : (
+              // <div className="count-down">
+              //   <h2 className="red-color-text">Your Minting will start in</h2>
+              //   <span className="span-row">
+              //     <span className="mint-parent">
+              //       <h2 className="mint-name blue-color-text">
+              //         {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+              //       </h2>
+              //       <hr className="mint-line" />
+              //     </span>
+              //   </span>
+              //   <p className="red-color-text">
+              //     Hold your piss for some more time.
+              //   </p>
+              // </div>
               <div className="mint-text">
                 <div className="modal-part-1">
-                  <p className="red-color-text">
-                    {"->  "} Set your max mints upto 3.
-                  </p>
+                  <div className="arrow-text">
+                    <img src={arrow} alt="" />
+                    <p className="red-color-text">Set your max mints upto 3.</p>
+                  </div>
                   <div className="number-input">
                     <NumberInput />
                   </div>
                 </div>
-                <p className="red-color-text">{"->  "}To get pump click Mint</p>
+                <div className="arrow-text">
+                  <img src={arrow} alt="" />
+                  <span className="span-row">
+                    <p className="red-color-text">To get pump click</p>
+                    <span className="mint-parent">
+                      <span className="mint-name blue-color-text">Mint</span>
+                      <hr className="mint-line" />
+                    </span>
+                  </span>
+                </div>
               </div>
             )}
           </div>
         </div>
-        :
-         null}
-    
+      ) : null}
 
       <div className="section-1">
         <div className="part-1">
@@ -325,7 +322,11 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
           {roadMapList.map((item, key) => (
-            <div key={key} className="tick-div"> {faqCard(item.q, item.ans)}<img src={tick} className="tick" /></div>
+            <div key={key} className="tick-div">
+              {" "}
+              {faqCard(item.q, item.ans)}
+              <img src={tick} className="tick" />
+            </div>
           ))}
           <div className="center-div">
             <div className="creator">
