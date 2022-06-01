@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./home.scss";
 import image from "./images/graph.svg";
 import NumberInput from "./numberInput";
 import contractabi from "../abi.json";
-import {useState} from "react";
+// import {useState} from "react";
 import { ethers } from "ethers";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
+/* ------------------------------ TIMER METHODS ----------------------------- */
+// const futureDate = new Date(2022, 6, 6, 9, 30, 0);
+const gmtValue = new Date().toString().slice(25, 33);
+const futureDate = new Date(`Sat Jun 06 2022 09:30:00 ${gmtValue}`);
+const getDateDiff = (date1, date2) => {
+  const diff = new Date(date2.getTime() - date1.getTime());
+  return {
+    year: diff.getUTCFullYear() - 1970,
+    month: diff.getUTCMonth(),
+    day: diff.getUTCDate() - 1,
+    hour: diff.getUTCHours(),
+    minute: diff.getUTCMinutes(),
+    second: diff.getUTCSeconds(),
+  };
+};
+
 export default function HomePage() {
   const [open, setOpen] = useState(false);
-  const [mintStart, setMintStart] = useState(false);
+  const [mintStart, setMintStart] = useState(true);
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  /* ------------------------------ TIMER METHODS ----------------------------- */
+
+  const [diff, setDiff] = useState({});
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDiff(getDateDiff(new Date(), futureDate));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  /* ---------------------------------- XXXX ---------------------------------- */
 
   const roadMapList = [
     {
@@ -101,10 +130,9 @@ export default function HomePage() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractabi, signer);
-  const [supply, setSupply] = useState();
 
   const mintToken = async () => {
-    const connection = contract.connect(signer);
+    // const connection = contract.connect(signer);
     // const addr = connection.address;
     // const supply = await contract.suppliedNFTs();
     // setSupply(supply);
@@ -174,7 +202,12 @@ export default function HomePage() {
               <div className="star-content">
                 <p className="red-color-text">
                   <span className="star-font">***</span> Enough with that{" "}
-                  <span className="green-color-text"><strike className="strike1"><strike className="strike2">Goblin</strike></strike></span> sheit
+                  <span className="green-color-text">
+                    <strike className="strike1">
+                      <strike className="strike2">Goblin</strike>
+                    </strike>
+                  </span>{" "}
+                  sheit
                   <br></br>
                   {/* <u className="blue-color-text pointer">mint</u> */}
                   <span className="span-row">
@@ -203,29 +236,39 @@ export default function HomePage() {
         </div>
       </div>
 
-     
-{open ? <div className="popup">
-      <div className="popup-content">
-        <p className="close-btn" onClick={handleClose}>X</p>
-       {!mintStart ? 
-       <div>
-        <h2 className="red-color-text">Your Minting will start in</h2>
-        <h2 className="blue-color-text">1D:2H:23M</h2>
-        <p className="red-color-text">Hold your piss for some more time.</p>
+      {open ? 
+        <div className="popup">
+          <div className="popup-content">
+            <p className="close-btn" onClick={handleClose}>
+              X
+            </p>
+            {!mintStart ? (
+              <div>
+                <h2 className="red-color-text">Your Minting will start in</h2>
+                <h2 className="blue-color-text">
+                  {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+                </h2>
+                <p className="red-color-text">
+                  Hold your piss for some more time.
+                </p>
+              </div>
+            ) : (
+              <div className="mint-text">
+                <div className="modal-part-1">
+                  <p className="red-color-text">
+                    {"->  "} Set your max mints upto 3.
+                  </p>
+                  <div className="number-input">
+                    <NumberInput />
+                  </div>
+                </div>
+                <p className="red-color-text">{"->  "}To get pump click Mint</p>
+              </div>
+            )}
+          </div>
         </div>
         :
-        <div className="mint-text">
-          <p className="red-color-text">Set your max mints upto 3.</p>
-          <NumberInput />
-          <p className="red-color-text">To get pump click  <span className="mint-parent" onClick={clickedMint}>
-                      <span className="mint-name blue-color-text"><a>mint</a><hr className="mint-line" /></span>
-                      
-                    </span></p>
-        </div>
-        }
-       
-      </div>
-    </div>: null}
+         null}
     
 
       <div className="section-1">
@@ -280,7 +323,7 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
           {roadMapList.map((item, key) => (
-            <div key={key}> {faqCard(item.q, item.ans)}</div>
+            <div key={key}> {faqCard(item.q, item.ans)}<div className="tick"></div></div>
           ))}
           <div className="center-div">
             <div className="creator">
@@ -294,6 +337,7 @@ export default function HomePage() {
         Although its not related to the project you can still follow me
         @sakamabals.bye.{" "}
       </p>
+      {/* <CountDown /> */}
     </div>
   );
 }
