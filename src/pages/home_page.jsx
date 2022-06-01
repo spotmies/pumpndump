@@ -5,6 +5,8 @@ import NumberInput from "./numberInput";
 import contractabi from "../abi.json";
 // import {useState} from "react";
 import { ethers } from "ethers";
+import tick from "./images/tick.png";
+import loader from "./images/loader.png";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 /* ------------------------------ TIMER METHODS ----------------------------- */
@@ -323,7 +325,7 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
           {roadMapList.map((item, key) => (
-            <div key={key}> {faqCard(item.q, item.ans)}<div className="tick"></div></div>
+            <div key={key} className="tick-div"> {faqCard(item.q, item.ans)}<img src={tick} className="tick" /></div>
           ))}
           <div className="center-div">
             <div className="creator">
