@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./home.scss";
-import image from "./images/graph.svg";
+// import image from "./images/graph.svg";
+import image from "./images/zero_candle.png";
 import NumberInput from "./numberInput";
 import contractabi from "../abi.json";
 // import {useState} from "react";
@@ -36,7 +37,7 @@ export default function HomePage() {
   async function requestAccount() {
     if (window.ethereum) {
       console.log("Metamask Detected");
-      alert("Metamask Connected");
+      alert("Metamask already Connected");
 
       try {
         const accounts = await window.ethereum.request({

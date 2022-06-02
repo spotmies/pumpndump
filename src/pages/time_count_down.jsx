@@ -38,7 +38,8 @@ export default function TimeCountDown() {
       <span className="span-row">
         <span className="mint-parent">
           <h2 className="mint-name blue-color-text">
-            {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+            {/* {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S */}
+            TBA
           </h2>
           <hr className="mint-line" />
         </span>

@@ -179,7 +179,8 @@
     font-size: 28px;
     .twitter {
         height: 20px;
-        margin-top: -50px !important;
+        margin-bottom: -10px !important;
+        margin-left: 5px;
     }
 }
 .pointer
@@ -343,7 +344,8 @@ input[type=number], input[type=number]:focus {
         }
         .mint-line{
             border: 1.5px solid #0044ff;
-            width: 217px;
+            // width: 217px;
+            
             margin-top: 2px;
             transform: rotate(176deg);
         }
