@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.scss";
-import image from "./images/graph.png";
+import image from "./images/graph.svg";
+import NumberInput from "./numberInput";
+import contractabi from "../abi.json";
+// import {useState} from "react";
+import { ethers } from "ethers";
+import tick from "./images/tick.png";
+import loader from "./images/loader.png";
+import closeButton from "./images/close_button.png";
+import arrow from "./images/bullet_arrow.png";
+import TimeCountDown from "./time_count_down";
+// import { Button, Header, Image, Modal } from 'semantic-ui-react'
+
 export default function HomePage() {
+  const [open, setOpen] = useState(false);
+  const [mintStart, setMintStart] = useState(false);
+  const handleMintStart = () => setMintStart(true);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const roadMapList = [
     {
       q: "Day 1",
@@ -67,6 +84,46 @@ export default function HomePage() {
       </div>
     );
   };
+
+  async function requestAccount() {
+    if (window.ethereum) {
+      console.log("Metamask Detected");
+
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        // setWallets(accounts[0]);
+      } catch (error) {
+        console.log("Error connecting....");
+      }
+    } else {
+      console.log("Metamask not detected");
+    }
+  }
+
+  const contractAddress = "0x928bDD7340c172B40c86036920E25E592EeEA9c6";
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(contractAddress, contractabi, signer);
+
+  const mintToken = async () => {
+    // const connection = contract.connect(signer);
+    // const addr = connection.address;
+    // const supply = await contract.suppliedNFTs();
+    // setSupply(supply);
+    const result = await contract.mint("3", {
+      value: ethers.utils.parseEther("0"),
+    });
+
+    console.log(result);
+  };
+
+  const clickedMint = () => {
+    requestAccount();
+    mintToken();
+  };
+
   return (
     <div className="home-page">
       <div className="heading">
@@ -83,6 +140,7 @@ export default function HomePage() {
           </div>
           <div className="img-section">
             <img src={image} alt="mad man" />
+            {/* <div className="candle"></div> */}
           </div>
         </div>
         <div className="part-2">
@@ -120,11 +178,16 @@ export default function HomePage() {
               <div className="star-content">
                 <p className="red-color-text">
                   <span className="star-font">***</span> Enough with that{" "}
-                  <span className="green-color-text">Goblin</span> sheit
+                  <span className="green-color-text">
+                    <strike className="strike1">
+                      <strike className="strike2">Goblin</strike>
+                    </strike>
+                  </span>{" "}
+                  sheit
                   <br></br>
                   {/* <u className="blue-color-text pointer">mint</u> */}
                   <span className="span-row">
-                    <span className="mint-parent">
+                    <span className="mint-parent" onClick={handleOpen}>
                       <span className="mint-name blue-color-text">mint</span>
                       <hr className="mint-line" />
                     </span>
@@ -148,6 +211,65 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {open ? (
+        <div className="popup">
+          <div className="popup-content">
+            {/* <p className="close-btn" onClick={handleClose}>
+              X
+            </p> */}
+            <div className="close-btn-parent">
+              <img
+                className="close-btn"
+                src={closeButton}
+                alt="close"
+                onClick={handleClose}
+              />
+            </div>
+
+            {!mintStart ? (
+              <TimeCountDown />
+            ) : (
+              // <div className="count-down">
+              //   <h2 className="red-color-text">Your Minting will start in</h2>
+              //   <span className="span-row">
+              //     <span className="mint-parent">
+              //       <h2 className="mint-name blue-color-text">
+              //         {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+              //       </h2>
+              //       <hr className="mint-line" />
+              //     </span>
+              //   </span>
+              //   <p className="red-color-text">
+              //     Hold your piss for some more time.
+              //   </p>
+              // </div>
+              <div className="mint-text">
+                <div className="modal-part-1">
+                  <div className="arrow-text">
+                    <img src={arrow} alt="" />
+                    <p className="red-color-text">Set your max mints upto 3.</p>
+                  </div>
+                  <div className="number-input">
+                    <NumberInput />
+                  </div>
+                </div>
+                <div className="arrow-text">
+                  <img src={arrow} alt="" />
+                  <span className="span-row">
+                    <p className="red-color-text">To get pump click</p>
+                    <span className="mint-parent">
+                      <span className="mint-name blue-color-text">Mint</span>
+                      <hr className="mint-line" />
+                    </span>
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
+
       <div className="section-1">
         <div className="part-1">
           <div className="side-head">
@@ -200,7 +322,11 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
           {roadMapList.map((item, key) => (
-            <div key={key}> {faqCard(item.q, item.ans)}</div>
+            <div key={key} className="tick-div">
+              {" "}
+              {faqCard(item.q, item.ans)}
+              <img src={tick} className="tick" />
+            </div>
           ))}
           <div className="center-div">
             <div className="creator">
@@ -214,6 +340,7 @@ export default function HomePage() {
         Although its not related to the project you can still follow me
         @sakamabals.bye.{" "}
       </p>
+      {/* <CountDown /> */}
     </div>
   );
 }
