@@ -126,7 +126,7 @@ export default function HomePage() {
             <hr className="red-line" />
           </div>
           <div className="img-section">
-            <img src={image} alt="mad man" height={500} />
+            <img src={image} alt="mad man" className="candle-img" />
             {/* <div className="candle"></div> */}
           </div>
         </div>
