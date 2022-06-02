@@ -6,7 +6,8 @@ function Routing() {
   return useRoutes([
     {
       path: "/",
-      element: <App />,
+      // element: <App />,
+      element: <HomePage />,
     },
     {
       path: "home",
