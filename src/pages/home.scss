@@ -450,7 +450,7 @@ input[type=number], input[type=number]:focus {
 
 @media screen and (max-width: 498px) {
 
-    
+
     .header-section {
         height: 160px !important;
         display: block !important;
@@ -491,6 +491,7 @@ input[type=number], input[type=number]:focus {
                 justify-items: center;
                 .candle-img {
                     height: 300px !important;
+                    margin-left: 30%;
                 }
             }
             .side-heading {
@@ -518,6 +519,43 @@ input[type=number], input[type=number]:focus {
 
     .collection-list {
         width: 100% !important;
+    }
+
+    p {
+        margin-left: 15px;
+        font-size: 18px;
+        // width: 100%;
+    }
+
+    .contact-us-text {
+        font-size: 20px;
+    }
+
+    .the-plan {
+        margin: 0 10px !important;
+    }
+
+    .paras {
+        width: 100% !important;
+    }
+
+    .side-head {
+        height: 60px !important;
+    }
+
+    .div-row {
+        width: 95%;
+    }
+
+    .star-content {
+        text-align: center;
+        .span-row {
+          margin-left: 25px;
+        }
+    }
+
+    .mint-below {
+        margin-top: 50px;
     }
 
 }

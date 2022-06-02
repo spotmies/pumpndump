@@ -44,7 +44,7 @@ export default function HomePage() {
   async function requestAccount() {
     if (window.ethereum) {
       //console.log("Metamask Detected");
-      alert("Metamask already Connected");
+      // alert("Metamask already Connected");
 
       try {
         const accounts = await window.ethereum.request({
@@ -161,7 +161,7 @@ export default function HomePage() {
                   </li>
                 </ol>
               </div>
-              <div className="star-content">
+               <div className="star-content">
                 <p className="red-color-text">
                   <span className="star-font">***</span> Enough with that{" "}
                   <span className="green-color-text">
@@ -184,7 +184,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-            <p>
+            <p className="mint-below">
               -Go to our Roadmap page to see the whole Idea behind the Project,
               all your Questions are asked in the FAQ column.
             </p>
@@ -234,7 +234,7 @@ export default function HomePage() {
                   <span className="span-row">
                     <p className="red-color-text">To get pump click</p>
                     <span className="mint-parent">
-                      <span className="mint-name blue-color-text">Mint</span>
+                      <span className="mint-name blue-color-text" onClick={clickedMint}>Mint</span>
                       <hr className="mint-line" />
                     </span>
                   </span>
@@ -295,7 +295,7 @@ export default function HomePage() {
         </div>
 
         <div className="part-2 faq">
-          <p className="blue-color-text"> (The Plan)</p>
+          <p className="blue-color-text the-plan"> (The Plan)</p>
           {constants.roadMapList.map((item, key) => (
             <>
               {key == 0 ? (
@@ -307,9 +307,10 @@ export default function HomePage() {
               ) : null}
             </>
           ))}
+          {/* Uncomment this after revealing 7th day plan */}
           <div className="center-div">
             <div className="creator">
-              <p>Hope you made some money!! Over and out!</p>
+              {/* <p>Hope you made some money!! Over and out!</p> */}
               <p className="creator-name">-Natoshi sakamabals</p>
             </div>
           </div>
