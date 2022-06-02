@@ -6,11 +6,11 @@ module.exports = Object.freeze({
     },
     {
       q: "Day 2",
-      ans: "Everyone should only list at 0.09 or higher in secondary market to get that sweet sweet volume…",
+      ans: "List at 0.09 or higher in secondary market to get that sweet sweet volume… Fu*k Goblinss Go lines..!",
     },
     {
       q: "Day 3",
-      ans: "Stop undercuttin Eachother A*SH*LEs, we have plan.. List at 0.2 or higher",
+      ans: "Stop undercuttin Eachother A*SH*LEs, we have a goal to reach.. List at 0.2 or higher",
     },
     {
       q: "Day 4",
@@ -22,7 +22,7 @@ module.exports = Object.freeze({
     },
     {
       q: "Day 6",
-      ans: "If everything is going according to plan we'll be at 1.5 Eth by now… if not, list it at 1.5 eth or more",
+      ans: "If everything is going according to plan we'll be at 1.5 Eth by now… if not, list it at 1.5 eth ot more",
     },
     {
       q: "Day 7",

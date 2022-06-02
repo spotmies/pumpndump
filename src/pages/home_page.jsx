@@ -25,11 +25,18 @@ export default function HomePage() {
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const faqCard = (question, answer) => {
+  const faqCard = (question, answer, hideAns, loading) => {
     return (
       <div>
-        <p className="blue-color-text">{question}</p>
-        <p className="faq-ans">{answer} </p>
+        <p
+          className={
+            loading ? "loader-text blue-color-text" : "blue-color-text"
+          }
+        >
+          {question}{" "}
+          {loading && <img src={loader} alt="" className="loader-icon" />}
+        </p>
+        {hideAns ? null : <p className="faq-ans">{answer} </p>}
       </div>
     );
   };
@@ -110,32 +117,31 @@ export default function HomePage() {
         <div className="part-2">
           <div className="paras">
             <p>
-              We'll pump this collection in the following 7 days and then
-              abandon the project on the 8th day ... if anyone wants quick eth
-              ... join us in this journey!
+              We'll pump this collection for 7 days after mint and then announce
+              something big on the 8th day …join us in this journey to the bull
+              market!
             </p>
             <p>
-              &#160; &#160;&#160;&#160;&#160;&#160;With a total Budget of 10eth
-              to market this project post mint, and additional 50% of royalties
-              goes back to marketing, we have to pump pump pump ...
+              &#160; &#160;&#160;&#160;&#160;&#160;50% of royalties goes back to
+              marketing, Cuz we have to pump pump pump…
             </p>
             <p>
               The roadmap will be revealed day by day…for seven days….just like
               announcements on discord…so don't forget to check for roadmap
               updates for seven days after mint.
             </p>
-            <p>Mint is FREE with 10k Collection</p>
+            <p>Mint is FREE with 3769 Bags</p>
             <div className="div-row">
               <div className="collection-list">
                 <ol>
                   <li className="green-color-text">
-                    <p className="green-color-text">150 rares</p>
+                    <p className="green-color-text">100 rares</p>
                   </li>
                   <li className="blue-color-text">
-                    <p>100 ultra rares </p>
+                    <p>50 ultra rares </p>
                   </li>
                   <li className="red-color-text">
-                    <p>50 legendaries</p>
+                    <p>25 legendaries</p>
                   </li>
                 </ol>
               </div>
@@ -166,7 +172,10 @@ export default function HomePage() {
               -Go to our Roadmap page to see the whole Idea behind the Project,
               all your Questions are asked in the FAQ column.
             </p>
-            <p>-No Discord, No Twitter.</p>
+            <p>
+              -No Discord, No Twitter, We'll only Use twitter and Discord to
+              market the project.
+            </p>
             <p>
               So turn your Ultra Degen mode ON and sit back for the next 7 days!
             </p>
@@ -194,20 +203,6 @@ export default function HomePage() {
             {!mintStart ? (
               <TimeCountDown />
             ) : (
-              // <div className="count-down">
-              //   <h2 className="red-color-text">Your Minting will start in</h2>
-              //   <span className="span-row">
-              //     <span className="mint-parent">
-              //       <h2 className="mint-name blue-color-text">
-              //         {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
-              //       </h2>
-              //       <hr className="mint-line" />
-              //     </span>
-              //   </span>
-              //   <p className="red-color-text">
-              //     Hold your piss for some more time.
-              //   </p>
-              // </div>
               <div className="mint-text">
                 <div className="modal-part-1">
                   <div className="arrow-text">
@@ -286,11 +281,15 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
           {constants.roadMapList.map((item, key) => (
-            <div key={key} className="tick-div">
-              {" "}
-              {faqCard(item.q, item.ans)}
-              <img src={tick} className="tick" />
-            </div>
+            <>
+              {key == 0 ? (
+                <div key={key} className="tick-div">
+                  {" "}
+                  {faqCard(item.q, item.ans, true, true)}
+                  {/* <img src={tick} className="tick" /> */}
+                </div>
+              ) : null}
+            </>
           ))}
           <div className="center-div">
             <div className="creator">

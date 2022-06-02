@@ -415,6 +415,12 @@ input[type=number], input[type=number]:focus {
 .tick-div {
     display: flex;
     flex-direction: row;
+    .loader-text{
+        display: inline-flex;
+    }
+    .loader-icon{
+        height: 30px;
+    }
 }
 
 .tick {
