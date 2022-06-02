@@ -11,7 +11,7 @@ import closeButton from "./images/close_button.png";
 import arrow from "./images/bullet_arrow.png";
 import TimeCountDown from "./time_count_down";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
-
+//5s.uK!Lgdr7K@F5
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
@@ -258,7 +258,7 @@ export default function HomePage() {
                   <img src={arrow} alt="" />
                   <span className="span-row">
                     <p className="red-color-text">To get pump click</p>
-                    <span className="mint-parent">
+                    <span className="mint-parent" onClick={clickedMint}>
                       <span className="mint-name blue-color-text">Mint</span>
                       <hr className="mint-line" />
                     </span>
