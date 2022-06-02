@@ -10,6 +10,12 @@ import loader from "./images/loader.png";
 import closeButton from "./images/close_button.png";
 import arrow from "./images/bullet_arrow.png";
 import TimeCountDown from "./time_count_down";
+
+import twitterIcon from "./images/twit.png";
+import openIcon from "./images/open.png";
+import etherScanIcon from "./images/e1.png";
+import connectWalleteIcon from "./images/connect_wallet.png";
+import constants from "./constants";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export default function HomePage() {
@@ -18,64 +24,6 @@ export default function HomePage() {
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const roadMapList = [
-    {
-      q: "Day 1",
-      ans: "Everyone should only list at 0.03 or higher in secondary market after mint to bring some traction..",
-    },
-    {
-      q: "Day 2",
-      ans: "Everyone should only list at 0.09 or higher in secondary market to get that sweet sweet volume…",
-    },
-    {
-      q: "Day 3",
-      ans: "Stop undercuttin Eachother A*SH*LEs, we have plan.. List at 0.2 or higher",
-    },
-    {
-      q: "Day 4",
-      ans: "Alright it feels good to stay in top 20 for 4 days Straight..list at 0.5 now!!",
-    },
-    {
-      q: "Day 5",
-      ans: "Don't Panick… we're almost There…List at 1 eth or higher!!",
-    },
-    {
-      q: "Day 6",
-      ans: "If everything is going according to plan we'll be at 1.5 Eth by now… if not, list it at 1.5 eth or more",
-    },
-    {
-      q: "Day 7",
-      ans: "@ 23:59",
-    },
-  ];
-  const faq = [
-    {
-      q: "1. How do I mint?",
-      ans: "You can connect your wallet on PC using the Metamask extension for the Chrome browser. If you are on mobile you can connect through the Metamask in-app browser or connect through the DApp browser in the Trustwallet app. You can connect your wallet with Walletconnect.",
-    },
-    {
-      q: "2. How to buy/sell on secondary Market?",
-      ans: "You can buy/sell items in our Collection on secondary market by clicking on our official OS link on top right corner..",
-    },
-    {
-      q: "3. How many NFTs I can Mint?",
-      ans: "3 Per each Wallet to give more people a chance to get in the project.",
-    },
-    {
-      q: "4.How to get Rich?",
-      ans: "Read Questions 1.and 2.",
-    },
-    {
-      q: "5. Wen moon?",
-      ans: "Day 7.",
-    },
-    {
-      q: "*Not Financial Advice!",
-      ans: "Terms and conditions are don't sue when you lose.! Click Agree to mint lol",
-    },
-  ];
-
   const faqCard = (question, answer) => {
     return (
       <div>
@@ -88,6 +36,7 @@ export default function HomePage() {
   async function requestAccount() {
     if (window.ethereum) {
       console.log("Metamask Detected");
+      alert("Metamask Connected");
 
       try {
         const accounts = await window.ethereum.request({
@@ -96,9 +45,11 @@ export default function HomePage() {
         // setWallets(accounts[0]);
       } catch (error) {
         console.log("Error connecting....");
+        alert("Error connecting....");
       }
     } else {
       console.log("Metamask not detected");
+      alert("Metamask not detected");
     }
   }
 
@@ -126,10 +77,22 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      <div className="heading">
-        <p className="head1 green-color-text">PUM</p>
-        <p className="head2 black-color-text">pend</p>
-        <p className="head3 red-color-text">UMP</p>
+      <div className="header-section">
+        <div className="heading">
+          <p className="head1 green-color-text">PUM</p>
+          <p className="head2 black-color-text">pend</p>
+          <p className="head3 red-color-text">UMP</p>
+        </div>
+        <div className="external-icons">
+          <img src={openIcon} className="icon-1 pointer" alt="" />
+          <img src={etherScanIcon} className="icon-2 pointer" alt="" />
+          <img
+            src={connectWalleteIcon}
+            className="icon-3 pointer"
+            alt=""
+            onClick={requestAccount}
+          />
+        </div>
       </div>
       <div className="section-1">
         <div className="part-1">
@@ -280,7 +243,7 @@ export default function HomePage() {
         </div>
 
         <div className="part-2 faq">
-          {faq.map((item, key) => (
+          {constants.faq.map((item, key) => (
             <div key={key}> {faqCard(item.q, item.ans)}</div>
           ))}
         </div>
@@ -321,7 +284,7 @@ export default function HomePage() {
 
         <div className="part-2 faq">
           <p className="blue-color-text"> (The Plan)</p>
-          {roadMapList.map((item, key) => (
+          {constants.roadMapList.map((item, key) => (
             <div key={key} className="tick-div">
               {" "}
               {faqCard(item.q, item.ans)}
@@ -338,7 +301,8 @@ export default function HomePage() {
       </div>
       <p className="text-center contact-us-text">
         Although its not related to the project you can still follow me
-        @sakamabals.bye.{" "}
+        @sakamabals
+        <img src={twitterIcon} alt="" className="twitter" /> .bye.{" "}
       </p>
       {/* <CountDown /> */}
     </div>
