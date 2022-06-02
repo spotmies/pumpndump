@@ -1,7 +1,7 @@
 .home-page{
     // background-image: url("./images/paper2.png");
     // background-image: url("./images/background.gif");
-    animation: image 8s infinite alternate;
+    animation: image 2s infinite alternate;
     background-size: cover;
     background-position: center;
     opacity: 0.7;
@@ -99,13 +99,13 @@
     }
 
    33% {
-       background-image: url("./images/p2.png");
+       background-image: url("./images/p3.png");
    }
          66% {
-             background-image: url("./images/p3.png");
+             background-image: url("./images/p1.png");
          }
                    100% {
-                       background-image: url("./images/p4.png");
+                       background-image: url("./images/p3.png");
                    }
 }
 .text-center{
