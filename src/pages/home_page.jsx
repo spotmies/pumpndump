@@ -43,7 +43,7 @@ export default function HomePage() {
 
   async function requestAccount() {
     if (window.ethereum) {
-      console.log("Metamask Detected");
+      //console.log("Metamask Detected");
       alert("Metamask already Connected");
 
       try {
@@ -52,11 +52,11 @@ export default function HomePage() {
         });
         // setWallets(accounts[0]);
       } catch (error) {
-        console.log("Error connecting....");
+        // console.log("Error connecting....");
         alert("Error connecting....");
       }
     } else {
-      console.log("Metamask not detected");
+      //console.log("Metamask not detected");
       alert("Metamask not detected");
     }
   }
@@ -75,7 +75,7 @@ export default function HomePage() {
       value: ethers.utils.parseEther("0"),
     });
 
-    console.log(result);
+    //console.log(result);
   };
 
   const clickedMint = () => {
