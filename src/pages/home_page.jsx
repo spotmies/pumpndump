@@ -126,7 +126,7 @@ export default function HomePage() {
             <hr className="red-line" />
           </div>
           <div className="img-section">
-            <img src={image} alt="mad man" />
+            <img src={image} alt="mad man" height={500} />
             {/* <div className="candle"></div> */}
           </div>
         </div>
@@ -151,13 +151,13 @@ export default function HomePage() {
               <div className="collection-list">
                 <ol>
                   <li className="green-color-text">
-                    <p className="green-color-text">100 rares</p>
+                    <p className="green-color-text list-item">100 rares</p>
                   </li>
                   <li className="blue-color-text">
-                    <p>50 ultra rares </p>
+                    <p className="list-item">50 ultra rares </p>
                   </li>
                   <li className="red-color-text">
-                    <p>25 legendaries</p>
+                    <p className="list-item">25 legendaries</p>
                   </li>
                 </ol>
               </div>
