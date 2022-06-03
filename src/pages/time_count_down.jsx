@@ -34,7 +34,7 @@ export default function TimeCountDown() {
   }, []);
   return (
     <div className="count-down">
-      <h2 className="red-color-text">Your Minting will start in</h2>
+      <h2 className="red-color-text">Hold your piss for some more time.</h2>
       <span className="span-row">
         <span className="mint-parent">
           <h2 className="mint-name blue-color-text">
@@ -44,7 +44,7 @@ export default function TimeCountDown() {
           <hr className="mint-line" />
         </span>
       </span>
-      <p className="red-color-text">Hold your piss for some more time.</p>
+      {/* <p className="red-color-text"></p> */}
     </div>
   );
 }

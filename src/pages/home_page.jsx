@@ -84,7 +84,7 @@ export default function HomePage() {
     // const supply = await contract.suppliedNFTs();
     // setSupply(supply);
     try {
-      const result = await getContract().mint("3", {
+      const result = await getContract().mint("1", {
         value: ethers.utils.parseEther("0"),
       });
     } catch (error) {
@@ -110,12 +110,16 @@ export default function HomePage() {
         <div className="external-icons">
           <img src={openIcon} className="icon-1 pointer" alt="" />
           <img src={etherScanIcon} className="icon-2 pointer" alt="" />
-          <img
+          {/* <img
             src={connectWalleteIcon}
             className="icon-3 pointer"
             alt=""
             onClick={requestAccount}
-          />
+          /> */}
+          <span className="mint-parent icon-3" onClick={requestAccount}>
+             <span className="mint-name blue-color-text connect-btn">Connect Wallet</span>
+             <hr className="mint-line connect-line" />
+          </span>
         </div>
       </div>
       <div className="section-1">
@@ -185,15 +189,14 @@ export default function HomePage() {
               </div>
             </div>
             <p className="mint-below">
-              -Go to our Roadmap page to see the whole Idea behind the Project,
-              all your Questions are asked in the FAQ column.
+              All your Questions are answered in the FAQ column.
             </p>
-            <p>
+            {/* <p>
               -No Discord, No Twitter, We'll only Use twitter and Discord to
               market the project.
-            </p>
+            </p> */}
             <p>
-              So turn your Ultra Degen mode ON and sit back for the next 7 days!
+               Turn your Ultra Degen mode ON and sit back for the next 7 days!
             </p>
             <p>Goodluck Degens!</p>
             <p>-Natoshi sakamabals</p>
@@ -322,7 +325,7 @@ export default function HomePage() {
         </div>
       </div>
       <p className="text-center contact-us-text">
-        Although its not related to the project you can still follow me
+        Although it's not tied to just this one project you can still follow me for announcements
         @sakamabals
         <img src={twitterIcon} alt="" className="twitter" /> .bye.{" "}
       </p>

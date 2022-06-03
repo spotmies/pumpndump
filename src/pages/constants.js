@@ -52,7 +52,7 @@ module.exports = Object.freeze({
     },
     {
       q: "*Not Financial Advice!",
-      ans: "Terms and conditions are don't sue when you lose.! Click Agree to mint lol",
+      ans: "Terms and conditions are don't sue when you lose.! Click Mint to Agree lol",
     },
   ],
 });
