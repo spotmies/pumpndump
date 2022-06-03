@@ -475,10 +475,13 @@ input[type=number], input[type=number]:focus {
             }
         }
          .heading {
-             font-size: 30px;
+             
              height: 100px !important;
              margin-right: 25px;
              align-items: center;
+             p {
+                font-size: 45px !important;
+             }
          }
     }
 
