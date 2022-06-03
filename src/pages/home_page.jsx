@@ -161,7 +161,7 @@ export default function HomePage() {
                   </li>
                 </ol>
               </div>
-               <div className="star-content">
+              <div className="star-content">
                 <p className="red-color-text">
                   <span className="star-font">***</span> Enough with that{" "}
                   <span className="green-color-text">
@@ -234,7 +234,12 @@ export default function HomePage() {
                   <span className="span-row">
                     <p className="red-color-text">To get pump click</p>
                     <span className="mint-parent">
-                      <span className="mint-name blue-color-text" onClick={clickedMint}>Mint</span>
+                      <span
+                        className="mint-name blue-color-text"
+                        onClick={clickedMint}
+                      >
+                        Mint
+                      </span>
                       <hr className="mint-line" />
                     </span>
                   </span>
