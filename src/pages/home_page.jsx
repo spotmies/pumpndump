@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./home.scss";
 // import image from "./images/graph.svg";
 import image from "./images/zero_candle.png";
 import NumberInput from "./numberInput";
 import contractabi from "../abi.json";
-// import {useState} from "react";
+
 import { ethers } from "ethers";
-import tick from "./images/tick.png";
 import loader from "./images/loader.png";
 import closeButton from "./images/close_button.png";
 import arrow from "./images/bullet_arrow.png";
@@ -15,17 +14,13 @@ import TimeCountDown from "./time_count_down";
 import twitterIcon from "./images/twit.png";
 import openIcon from "./images/open.png";
 import etherScanIcon from "./images/e1.png";
-// import connectWalleteIcon from "./images/connect_wallet.png";
 import constants from "./constants";
-// import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
-  const [walletText, setWalletText] = useState(false);
   const handleMintStart = () => setMintStart(true);
-  const [wallets, setWallets] = useState();
-  const [account, setAccount] = useState();
+  const [wallets, setWallets] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const faqCard = (question, answer, hideAns, loading) => {
@@ -44,16 +39,29 @@ export default function HomePage() {
     );
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        window?.ethereum &&
+        window?.ethereum?.selectedAddress &&
+        wallets === ""
+      ) {
+        setWallets(window.ethereum.selectedAddress.slice(-4));
+      }
+    }, 1000);
+  }, []);
+
   async function requestAccount() {
     if (window.ethereum) {
-      //console.log("Metamask Detected");
-      // alert("Metamask already Connected");
-
+      if (wallets !== "") {
+        alert("You are already connected to Metamask");
+        return;
+      }
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        setWalletText(true);
+        // setWalletText(true);
         setWallets(accounts[0].slice(-4));
       } catch (error) {
         // console.log("Error connecting....");
@@ -75,10 +83,10 @@ export default function HomePage() {
         contractabi,
         signer
       );
-      console.log("contract", contract);
+      // console.log("contract", contract);
       return contract;
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   };
 
@@ -92,7 +100,7 @@ export default function HomePage() {
         value: ethers.utils.parseEther("0"),
       });
     } catch (error) {
-      console.log("error91", error);
+      // console.log("error91", error);
     }
 
     //console.log(result);
@@ -121,10 +129,18 @@ export default function HomePage() {
             onClick={requestAccount}
           /> */}
           <span className="mint-parent icon-3" onClick={requestAccount}>
-             {walletText ? <span className="mint-name blue-color-text connect-btn">0x...{account}<hr className="mint-line connect-line" />
-          </span> : <span className="mint-name blue-color-text connect-btn">Connect Wallet<hr className="mint-line connect-line" />
-          </span>}
-           </span>  
+            {wallets != "" ? (
+              <span className="mint-name blue-color-text connect-btn">
+                0x...{wallets}
+                <hr className="mint-line connect-line" />
+              </span>
+            ) : (
+              <span className="mint-name blue-color-text connect-btn">
+                Connect Wallet
+                <hr className="mint-line connect-line" />
+              </span>
+            )}
+          </span>
         </div>
       </div>
       <div className="section-1">
@@ -201,7 +217,7 @@ export default function HomePage() {
               market the project.
             </p> */}
             <p>
-               Turn your Ultra Degen mode ON and sit back for the next 7 days!
+              Turn your Ultra Degen mode ON and sit back for the next 7 days!
             </p>
             <p>Goodluck Degens!</p>
             <p>-Natoshi sakamabals</p>
@@ -330,8 +346,8 @@ export default function HomePage() {
         </div>
       </div>
       <p className="text-center contact-us-text">
-        Although it's not tied to just this one project you can still follow me for announcements
-        @sakamabals
+        Although it's not tied to just this one project you can still follow me
+        for announcements @sakamabals
         <img src={twitterIcon} alt="" className="twitter" /> .bye.{" "}
       </p>
       {/* <CountDown /> */}
