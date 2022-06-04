@@ -54,7 +54,7 @@ export default function HomePage() {
   async function requestAccount() {
     if (window.ethereum) {
       if (wallets !== "") {
-        alert("Wallet alredy connected");
+        alert("Wallet already connected");
         return;
       }
       try {
