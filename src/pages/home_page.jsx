@@ -15,14 +15,17 @@ import TimeCountDown from "./time_count_down";
 import twitterIcon from "./images/twit.png";
 import openIcon from "./images/open.png";
 import etherScanIcon from "./images/e1.png";
-import connectWalleteIcon from "./images/connect_wallet.png";
+// import connectWalleteIcon from "./images/connect_wallet.png";
 import constants from "./constants";
 // import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
+  const [walletText, setWalletText] = useState(false);
   const handleMintStart = () => setMintStart(true);
+  const [wallets, setWallets] = useState();
+  const [account, setAccount] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const faqCard = (question, answer, hideAns, loading) => {
@@ -50,10 +53,11 @@ export default function HomePage() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        // setWallets(accounts[0]);
+        setWalletText(true);
+        setWallets(accounts[0].slice(-4));
       } catch (error) {
         // console.log("Error connecting....");
-        alert("Error connecting....");
+        alert(error);
       }
     } else {
       //console.log("Metamask not detected");
@@ -117,9 +121,10 @@ export default function HomePage() {
             onClick={requestAccount}
           /> */}
           <span className="mint-parent icon-3" onClick={requestAccount}>
-             <span className="mint-name blue-color-text connect-btn">Connect Wallet</span>
-             <hr className="mint-line connect-line" />
-          </span>
+             {walletText ? <span className="mint-name blue-color-text connect-btn">0x...{account}<hr className="mint-line connect-line" />
+          </span> : <span className="mint-name blue-color-text connect-btn">Connect Wallet<hr className="mint-line connect-line" />
+          </span>}
+           </span>  
         </div>
       </div>
       <div className="section-1">
