@@ -54,7 +54,7 @@ export default function HomePage() {
   async function requestAccount() {
     if (window.ethereum) {
       if (wallets !== "") {
-        alert("You are already connected to Metamask");
+        alert("Wallet alredy connected");
         return;
       }
       try {
