@@ -189,7 +189,7 @@ export default function HomePage() {
               <div className="star-content">
                 <p className="red-color-text">
                   <span className="star-font">***</span> Enough with that{" "}
-                  <span className="green-color-text">
+                  <span className="green-color-text goblin-text">
                     <strike className="strike1">
                       <strike className="strike2">Goblin</strike>
                     </strike>

@@ -36,6 +36,7 @@ export default function TimeCountDown() {
     <div className="count-down">
       <h2 className="red-color-text">Hold your piss for some more time.</h2>
       <span className="span-row">
+        <p className="mint-date">Mint date</p>
         <span className="mint-parent">
           <h2 className="mint-name blue-color-text">
             {/* {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S */}
