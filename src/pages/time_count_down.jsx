@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 /* ------------------------------ TIMER METHODS ----------------------------- */
 // const futureDate = new Date(2022, 6, 6, 9, 30, 0);
 const gmtValue = new Date().toString().slice(25, 33);
-const futureDate = new Date(`Sat Jun 06 2022 09:30:00 ${gmtValue}`);
+const futureDate = new Date(`Mon Jun 06 2022 16:53:00 ${gmtValue}`);
 const getDateDiff = (date1, date2) => {
   const diff = new Date(date2.getTime() - date1.getTime());
   return {

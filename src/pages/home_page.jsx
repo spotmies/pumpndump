@@ -14,7 +14,7 @@ import TimeCountDown from "./time_count_down";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
-  const [mintStart, setMintStart] = useState(false);
+  const [mintStart, setMintStart] = useState(true);
   const handleMintStart = () => setMintStart(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -259,7 +259,12 @@ export default function HomePage() {
                   <span className="span-row">
                     <p className="red-color-text">To get pump click</p>
                     <span className="mint-parent">
-                      <span className="mint-name blue-color-text">Mint</span>
+                      <span
+                        className="mint-name blue-color-text"
+                        onClick={clickedMint}
+                      >
+                        Mint
+                      </span>
                       <hr className="mint-line" />
                     </span>
                   </span>
