@@ -40,7 +40,7 @@ module.exports = Object.freeze({
     },
     {
       q: "3. How many NFTs I can Mint?",
-      ans: "3 Per each Wallet to give more people a chance to get in the project.",
+      ans: "2 Per each Wallet to give more people a chance to get in the project.",
     },
     {
       q: "4.How to get Rich?",
