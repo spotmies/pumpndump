@@ -348,7 +348,13 @@ export default function HomePage() {
       <p className="text-center contact-us-text">
         Although it's not tied to just this one project you can still follow me
         for announcements @sakamabals
-        <img src={twitterIcon} alt="" className="twitter" /> .bye.{" "}
+        <img
+          src={twitterIcon}
+          alt=""
+          className="twitter pointer"
+          onClick={constants.navigatToTwitter}
+        />{" "}
+        .bye.{" "}
       </p>
       {/* <CountDown /> */}
     </div>

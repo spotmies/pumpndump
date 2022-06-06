@@ -61,4 +61,11 @@ module.exports = Object.freeze({
       walletId: "",
     },
   ],
+
+  navigatToTwitter: () => {
+    window.open(
+      "https://twitter.com/sakamabals?t=R9wTQ3cpjo1pwbq4QGX09A&s=09",
+      "_blank"
+    );
+  },
 });
