@@ -15,14 +15,22 @@ import twitterIcon from "./images/twit.png";
 import openIcon from "./images/open.png";
 import etherScanIcon from "./images/e1.png";
 import constants from "./constants";
+import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
-  const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
+  const gaWalletTracker = useAnalyticsEventTracker("wallet");
+  const gaMintTracker = useAnalyticsEventTracker("mint");
+  const gaOtherTracker = useAnalyticsEventTracker("others");
+  const handleOpen = () => {
+    setOpen(true);
+    gaMintTracker("mint-popup");
+  };
   const faqCard = (question, answer, hideAns, loading) => {
     return (
       <div>
@@ -57,11 +65,13 @@ export default function HomePage() {
         alert("Wallet already connected");
         return;
       }
+      gaWalletTracker("new-wallet");
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         // setWalletText(true);
+        gaWalletTracker("wallet-connected");
         setWallets(accounts[0].slice(-4));
       } catch (error) {
         // console.log("Error connecting....");
@@ -69,6 +79,7 @@ export default function HomePage() {
       }
     } else {
       //console.log("Metamask not detected");
+      gaWalletTracker("no-metamask");
       alert("Metamask not detected");
     }
   }
@@ -352,7 +363,10 @@ export default function HomePage() {
           src={twitterIcon}
           alt=""
           className="twitter pointer"
-          onClick={constants.navigatToTwitter}
+          onClick={() => {
+            constants.navigatToTwitter();
+            gaOtherTracker("twitter-click");
+          }}
         />{" "}
         .bye.{" "}
       </p>
