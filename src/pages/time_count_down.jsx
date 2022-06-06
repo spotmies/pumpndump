@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 /* ------------------------------ TIMER METHODS ----------------------------- */
 // const futureDate = new Date(2022, 6, 6, 9, 30, 0);
 const gmtValue = new Date().toString().slice(25, 33);
-const futureDate = new Date(`Sat Jun 06 2022 09:30:00 ${gmtValue}`);
+const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
+const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
+
 const getDateDiff = (date1, date2) => {
   const diff = new Date(date2.getTime() - date1.getTime());
   return {
@@ -29,6 +31,8 @@ export default function TimeCountDown() {
     const timer = setInterval(() => {
       // console.log(getDateDiff(new Date(), futureDate));
       setDiff(getDateDiff(new Date(), futureDate));
+      // console.log("future date", futureDate.valueOf());
+      // console.log("min date", whiteListMintDate.valueOf());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -36,13 +40,18 @@ export default function TimeCountDown() {
     <div className="count-down">
       <h2 className="red-color-text">Hold your piss for some more time.</h2>
       <span className="span-row">
-        <p className="mint-date">Mint date</p>
+        <span className="mint-parent">
+          <h2 className="mint-name blue-color-text">Mint date</h2>
+          <hr className="mint-line" />
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        {/* <p className="mint-date">Mint date</p> */}
         <span className="mint-parent">
           <h2 className="mint-name blue-color-text">
-            {/* {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S */}
-            TBA
+            {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+            {/* TBA */}
           </h2>
-          <hr className="mint-line" />
+          {/* <hr className="mint-line" /> */}
         </span>
       </span>
       {/* <p className="red-color-text"></p> */}

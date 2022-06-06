@@ -55,4 +55,10 @@ module.exports = Object.freeze({
       ans: "Terms and conditions are don't sue when you lose.! Click Mint to Agree lol",
     },
   ],
+
+  whiteListIds: [
+    {
+      walletId: "",
+    },
+  ],
 });
