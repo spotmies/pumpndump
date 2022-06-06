@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pum-pend-ump"
+  },
+  "targets": {
+    "test-41e8d": {
+      "hosting": {
+        "pum-pend-ump": [
+          "pum-pend-ump"
+        ]
+      }
+    }
   }
 }
