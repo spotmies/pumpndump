@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 /* ------------------------------ TIMER METHODS ----------------------------- */
 // const futureDate = new Date(2022, 6, 6, 9, 30, 0);
 const gmtValue = new Date().toString().slice(25, 33);
-const futureDate = new Date(`Sat Jun 06 2022 09:30:00 ${gmtValue}`);
+const futureDate = new Date(`Mon Jun 06 2022 16:20:00 ${gmtValue}`);
 const getDateDiff = (date1, date2) => {
   const diff = new Date(date2.getTime() - date1.getTime());
   return {
@@ -39,8 +39,8 @@ export default function TimeCountDown() {
         <p className="mint-date">Mint date</p>
         <span className="mint-parent">
           <h2 className="mint-name blue-color-text">
-            {/* {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S */}
-            TBA
+            {diff?.day}D:{diff?.hour}H:{diff?.minute}M:{diff?.second}S
+            {/* TBA */}
           </h2>
           <hr className="mint-line" />
         </span>
