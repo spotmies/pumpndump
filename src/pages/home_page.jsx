@@ -20,14 +20,18 @@ import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
+  const [soldOut, setSoldOut] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [chainId, setChainId] = useState(1);
 
   const handleClose = () => setOpen(false);
   const gaWalletTracker = useAnalyticsEventTracker("wallet");
   const gaMintTracker = useAnalyticsEventTracker("mint");
   const gaOtherTracker = useAnalyticsEventTracker("others");
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
   const handleOpen = () => {
     setOpen(true);
     gaMintTracker("mint-popup");
@@ -58,6 +62,9 @@ export default function HomePage() {
         setWallets(window.ethereum.selectedAddress.slice(-4));
       }
     }, 1000);
+    setTimeout(() => {
+      mintCount();
+    }, 2000);
   }, []);
 
   async function requestAccount(showError) {
@@ -72,6 +79,8 @@ export default function HomePage() {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
+        mintCount();
+        getChainId();
         // setWalletText(true);
         gaWalletTracker("wallet-connected");
         setWallets(accounts[0].slice(-4));
@@ -85,6 +94,16 @@ export default function HomePage() {
       alert("Metamask not detected");
     }
   }
+
+  const getChainId = async () => {
+    const { chainId } = await provider.getNetwork();
+    console.log("chainId", chainId);
+    setChainId(chainId);
+
+    if (chainId !== 1) {
+      alert("Please connect to Ethereum Mainnet");
+    }
+  };
 
   const getContract = () => {
     try {
@@ -110,17 +129,15 @@ export default function HomePage() {
       alert("Metamask not detected");
       return;
     }
+
     try {
       const TotalMinted = await getContract().totalSupply();
       console.log("totalMinted", TotalMinted);
+      console.log(parseInt(TotalMinted._hex, 16));
     } catch (err) {
       console.log("mintcount error", err);
     }
   };
-
-  useEffect(() => {
-    mintCount();
-  }, []);
 
   const mintToken = async () => {
     // const connection = contract.connect(signer);
@@ -158,6 +175,7 @@ export default function HomePage() {
 
   const clickedMint = () => {
     requestAccount(false);
+    getChainId();
     mintToken();
   };
 
@@ -289,44 +307,55 @@ export default function HomePage() {
                 onClick={handleClose}
               />
             </div>
-
-            {!mintStart ? (
-              <TimeCountDown
-                trigger1={() => {}}
-                trigger2={(val) => {
-                  setMintStart(val ?? false);
-                }}
-              />
+            {soldOut ? (
+              <div className="sold-out">
+                <h2 className="red-color-text">
+                  Sorry, this collection is sold out!
+                </h2>
+              </div>
             ) : (
-              <div className="mint-text">
-                <div className="modal-part-1">
-                  <div className="arrow-text">
-                    <img src={arrow} alt="" />
-                    <p className="red-color-text">Set your max mints upto 2.</p>
-                  </div>
-                  <div className="number-input">
-                    <NumberInput
-                      onChange={(num) => {
-                        setQuantity(num);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="arrow-text">
-                  <img src={arrow} alt="" />
-                  <span className="span-row">
-                    <p className="red-color-text">To get pump click</p>
-                    <span className="mint-parent">
-                      <span
-                        className="mint-name blue-color-text"
-                        onClick={clickedMint}
-                      >
-                        Mint
+              <div>
+                {!mintStart ? (
+                  <TimeCountDown
+                    trigger1={() => {}}
+                    trigger2={(val) => {
+                      setMintStart(val ?? false);
+                    }}
+                  />
+                ) : (
+                  <div className="mint-text">
+                    <div className="modal-part-1">
+                      <div className="arrow-text">
+                        <img src={arrow} alt="" />
+                        <p className="red-color-text">
+                          Set your max mints upto 2.
+                        </p>
+                      </div>
+                      <div className="number-input">
+                        <NumberInput
+                          onChange={(num) => {
+                            setQuantity(num);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="arrow-text">
+                      <img src={arrow} alt="" />
+                      <span className="span-row">
+                        <p className="red-color-text">To get pump click</p>
+                        <span className="mint-parent">
+                          <span
+                            className="mint-name blue-color-text"
+                            onClick={clickedMint}
+                          >
+                            Mint
+                          </span>
+                          <hr className="mint-line" />
+                        </span>
                       </span>
-                      <hr className="mint-line" />
-                    </span>
-                  </span>
-                </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
