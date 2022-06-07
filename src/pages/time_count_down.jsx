@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 const gmtValue = new Date().toString().slice(25, 33);
 const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
 const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
+// const futureDate = new Date(`Tue Jun 07 2022 13:40:00 ${gmtValue}`);
+// const whiteListMintDate = new Date(`Tue Jun 07 2022 13:10:00 ${gmtValue}`);
 
 const getDateDiff = (date1, date2) => {
   const diff = new Date(date2.getTime() - date1.getTime());
@@ -18,7 +20,7 @@ const getDateDiff = (date1, date2) => {
   };
 };
 
-export default function TimeCountDown() {
+export default function TimeCountDown(props) {
   const [diff, setDiff] = useState({
     day: 0,
     hour: 0,
@@ -31,6 +33,10 @@ export default function TimeCountDown() {
     const timer = setInterval(() => {
       // console.log(getDateDiff(new Date(), futureDate));
       setDiff(getDateDiff(new Date(), futureDate));
+      if (new Date() > futureDate) {
+        console.log("time is up");
+        props.trigger2(true);
+      }
       // console.log("future date", futureDate.valueOf());
       // console.log("min date", whiteListMintDate.valueOf());
     }, 1000);
@@ -38,9 +44,24 @@ export default function TimeCountDown() {
   }, []);
   return (
     <div className="count-down">
-      <h2 className="red-color-text">Hold your piss for some more time.</h2>
+      <h2 className="red-color-text">
+        {new Date() > whiteListMintDate
+          ? "WhiteList Mint is live now! click on mint below to mint"
+          : "Hold your piss for some more time."}
+      </h2>
       <span className="span-row">
-        <span className="mint-parent">
+        <span
+          className="mint-parent"
+          onClick={() => {
+            if (new Date() > whiteListMintDate) {
+              props.trigger2(true);
+              return;
+            }
+            alert(
+              `If your whitelist person wait untill ${whiteListMintDate}, otherwise you have to wait for ${futureDate} to get your mint.`
+            );
+          }}
+        >
           <h2 className="mint-name blue-color-text">Mint date</h2>
           <hr className="mint-line" />
         </span>
