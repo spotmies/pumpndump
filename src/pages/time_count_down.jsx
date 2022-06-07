@@ -8,7 +8,8 @@ console.log("gmtValue:", gmtValue);
 // const gmtValue = "GMT-0400";
 const futureDate = new Date(1654704000000);
 // const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
-const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
+// const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
+const whiteListMintDate = new Date(1654702200000);
 // const futureDate = new Date(`Tue Jun 07 2022 13:40:00 ${gmtValue}`);
 // const whiteListMintDate = new Date(`Tue Jun 07 2022 13:10:00 ${gmtValue}`);
 
@@ -64,7 +65,7 @@ export default function TimeCountDown(props) {
               return;
             }
             alert(
-              `If your whitelist person wait untill ${whiteListMintDate}, otherwise you have to wait for ${futureDate} to get your mint.`
+              `If you're whitelist person wait untill ${whiteListMintDate}, otherwise you have to wait for ${futureDate} to mint.`
             );
           }}
         >
