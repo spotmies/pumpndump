@@ -477,7 +477,12 @@ input[type=number], input[type=number]:focus {
 
 
 @media screen and (max-width: 498px) {
+.number-input{
+  
 
+    margin-top: 0 !important;
+
+}
 
     .header-section {
         height: 160px !important;
