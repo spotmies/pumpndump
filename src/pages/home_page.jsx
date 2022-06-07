@@ -99,7 +99,7 @@ export default function HomePage() {
       // console.log("contract", contract);
       return contract;
     } catch (error) {
-      // console.log("error", error);
+      console.log("error", error);
     }
   };
 

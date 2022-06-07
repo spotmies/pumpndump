@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 
 /* ------------------------------ TIMER METHODS ----------------------------- */
 // const futureDate = new Date(2022, 6, 6, 9, 30, 0);
-const gmtValue = new Date().toString().slice(25, 33);
-const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
+const gmtValue = new Date().toString().slice(25, 33).trim();
+console.log("currentTime", new Date().toString());
+console.log("gmtValue:", gmtValue);
+// const gmtValue = "GMT-0400";
+const futureDate = new Date(1654704000000);
+// const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
 const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
 // const futureDate = new Date(`Tue Jun 07 2022 13:40:00 ${gmtValue}`);
 // const whiteListMintDate = new Date(`Tue Jun 07 2022 13:10:00 ${gmtValue}`);
+
+console.log("futureDate: ", futureDate);
 
 const getDateDiff = (date1, date2) => {
   const diff = new Date(date2.getTime() - date1.getTime());
