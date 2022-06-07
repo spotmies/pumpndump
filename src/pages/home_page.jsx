@@ -22,6 +22,7 @@ export default function HomePage() {
   const [mintStart, setMintStart] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const handleClose = () => setOpen(false);
   const gaWalletTracker = useAnalyticsEventTracker("wallet");
@@ -59,10 +60,11 @@ export default function HomePage() {
     }, 1000);
   }, []);
 
-  async function requestAccount() {
+  async function requestAccount(showError) {
+    const alertMessage = showError ?? true;
     if (window.ethereum) {
       if (wallets !== "") {
-        alert("Wallet already connected");
+        if (alertMessage) alert("Wallet already connected");
         return;
       }
       gaWalletTracker("new-wallet");
@@ -86,7 +88,7 @@ export default function HomePage() {
 
   const getContract = () => {
     try {
-      const contractAddress = "0x928bDD7340c172B40c86036920E25E592EeEA9c6";
+      const contractAddress = "0x41187d5E6DA8BFF81ABD46cEDAcc3EE602aC5230";
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -101,24 +103,61 @@ export default function HomePage() {
     }
   };
 
+  const mintCount = async () => {
+    // const TotalMinted = await getContract().suppliedNFTs();
+
+    if (!window.ethereum) {
+      alert("Metamask not detected");
+      return;
+    }
+    try {
+      const TotalMinted = await getContract().totalSupply();
+      console.log("totalMinted", TotalMinted);
+    } catch (err) {
+      console.log("mintcount error", err);
+    }
+  };
+
+  useEffect(() => {
+    mintCount();
+  }, []);
+
   const mintToken = async () => {
     // const connection = contract.connect(signer);
     // const addr = connection.address;
     // const supply = await contract.suppliedNFTs();
     // setSupply(supply);
     try {
-      const result = await getContract().mint("1", {
-        value: ethers.utils.parseEther("0"),
-      });
+      if (quantity < 1) {
+        alert("Please enter valid quantity");
+        return;
+      }
+      getContract()
+        .mint(quantity, {
+          value: ethers.utils.parseEther("0"),
+        })
+        .then((val) => {
+          alert("Token minted successfully");
+          // console.log("val", val);
+          // console.log("error", error);
+        })
+        .catch((error) => {
+          // console.log("error", error);
+          // console.table(error);
+          console.log(error.reason);
+          alert(error.reason);
+          // console.log("errortp", typeof error);
+          // console.log("errorm", error.message);
+        });
     } catch (error) {
-      // console.log("error91", error);
+      console.log("error91", error?.reason);
     }
 
     //console.log(result);
   };
 
   const clickedMint = () => {
-    requestAccount();
+    requestAccount(false);
     mintToken();
   };
 
@@ -252,16 +291,25 @@ export default function HomePage() {
             </div>
 
             {!mintStart ? (
-              <TimeCountDown />
+              <TimeCountDown
+                trigger1={() => {}}
+                trigger2={(val) => {
+                  setMintStart(val ?? false);
+                }}
+              />
             ) : (
               <div className="mint-text">
                 <div className="modal-part-1">
                   <div className="arrow-text">
                     <img src={arrow} alt="" />
-                    <p className="red-color-text">Set your max mints upto 3.</p>
+                    <p className="red-color-text">Set your max mints upto 2.</p>
                   </div>
                   <div className="number-input">
-                    <NumberInput />
+                    <NumberInput
+                      onChange={(num) => {
+                        setQuantity(num);
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="arrow-text">
@@ -337,7 +385,7 @@ export default function HomePage() {
         <div className="part-2 faq">
           <p className="blue-color-text the-plan"> (The Plan)</p>
           {constants.roadMapList.map((item, key) => (
-            <>
+            <div key={key}>
               {key == 0 ? (
                 <div key={key} className="tick-div">
                   {" "}
@@ -345,7 +393,7 @@ export default function HomePage() {
                   {/* <img src={tick} className="tick" /> */}
                 </div>
               ) : null}
-            </>
+            </div>
           ))}
           {/* Uncomment this after revealing 7th day plan */}
           <div className="center-div">

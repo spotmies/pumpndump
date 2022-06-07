@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./home.scss";
 
-function NumberInput() {
-  const [num, setNum] = React.useState(0);
+function NumberInput(props) {
+  const [num, setNum] = React.useState(1);
 
   const add = () => {
     setNum(parseInt(num) + 1);
   };
 
   const minus = () => {
-    if (num === 0) return;
+    if (num === 1) return;
     setNum(parseInt(num) - 1);
   };
+
+  useEffect(() => {
+    props.onChange(num);
+  }, [num]);
 
   return (
     <div className="num-div">
