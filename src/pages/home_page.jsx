@@ -261,7 +261,14 @@ export default function HomePage() {
           <p className="head3 red-color-text">UMP</p>
         </div>
         <div className="external-icons">
-          <img src={openIcon} className="icon-1 pointer" alt="" />
+          <img
+            src={openIcon}
+            className="icon-1 pointer"
+            alt=""
+            onClick={() => {
+              constants.openSeaLink();
+            }}
+          />
           <img src={etherScanIcon} className="icon-2 pointer" alt="" />
           {/* <img
             src={connectWalleteIcon}
