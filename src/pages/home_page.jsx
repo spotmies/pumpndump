@@ -19,7 +19,7 @@ import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
-  const [mintStart, setMintStart] = useState(false);
+  const [mintStart, setMintStart] = useState(true);
   const [soldOut, setSoldOut] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
@@ -27,6 +27,8 @@ export default function HomePage() {
   const [walletAddress, setWalletAddress] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [chainId, setChainId] = useState(1);
+
+  const [addr, setAddr] = useState();
 
   const handleClose = () => setOpen(false);
   const gaWalletTracker = useAnalyticsEventTracker("wallet");
@@ -162,14 +164,14 @@ export default function HomePage() {
     console.log("chainId", chainId);
     setChainId(chainId);
 
-    if (chainId !== 1) {
+    if (chainId !== 4) {
       alert("Please connect to Ethereum Mainnet");
     }
   };
 
   const getContract = () => {
     try {
-      const contractAddress = "0x41187d5E6DA8BFF81ABD46cEDAcc3EE602aC5230";
+      const contractAddress = "0x928bDD7340c172B40c86036920E25E592EeEA9c6";
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -247,7 +249,16 @@ export default function HomePage() {
     getChainId();
     mintToken();
   };
-
+  const addWhitelist = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(addr);
+      await getContract().whitelistUser(addr);
+      console.log("whitelisted");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
   return (
     <div className="home-page">
       <div className="header-section">
@@ -284,9 +295,19 @@ export default function HomePage() {
         <div className="part-1">
           <div className="side-head">
             <p className="side-heading">Introduction :-</p>
+
             <hr className="green-line" />
             <hr className="red-line" />
           </div>
+          <form onSubmit={addWhitelist}>
+            <input
+              type="text"
+              onChange={(e) => {
+                setAddr(e.target.value);
+              }}
+            />
+            <button type="submit">Whitelist</button>
+          </form>
           <div className="img-section">
             <img src={getCountImage()} alt="mad man" className="candle-img" />
 
