@@ -509,7 +509,7 @@ export default function HomePage() {
               {key == 0 ? (
                 <div key={key} className="tick-div">
                   {" "}
-                  {faqCard(item.q, item.ans, true, true)}
+                  {faqCard(item.q, item.ans, false, true)}
                   {/* <img src={tick} className="tick" /> */}
                 </div>
               ) : null}

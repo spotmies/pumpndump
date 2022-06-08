@@ -2,7 +2,7 @@ module.exports = Object.freeze({
   roadMapList: [
     {
       q: "Day 1",
-      ans: "Everyone should only list at 0.05 or higher in secondary market after mint to bring some traction..",
+      ans: "Everyone should only list at 0.05 or higher in secondary market after mint to bring some traction.. A very exciting collab announcement awaits at the end of day 1.",
     },
     {
       q: "Day 2",
