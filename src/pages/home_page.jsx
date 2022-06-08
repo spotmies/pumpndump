@@ -379,9 +379,7 @@ export default function HomePage() {
             </div>
             {soldOut ? (
               <div className="sold-out">
-                <h2 className="red-color-text">
-                  Sorry, this collection is sold out!
-                </h2>
+                <h2 className="red-color-text">Sorry, we are out of PUMPS!</h2>
               </div>
             ) : (
               <div>
