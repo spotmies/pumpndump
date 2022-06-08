@@ -20,7 +20,7 @@ import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
-  const [soldOut, setSoldOut] = useState(false);
+  const [soldOut, setSoldOut] = useState(true);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
   const [currentMintCount, setCurrentMintCount] = useState(0);
@@ -197,7 +197,11 @@ export default function HomePage() {
       console.log("totalMinted", TotalMinted);
       console.log(parseInt(TotalMinted._hex, 16));
       try {
-        setCurrentMintCount(parseInt(TotalMinted._hex, 16));
+        let count = parseInt(TotalMinted._hex, 16);
+        setCurrentMintCount(count);
+        if (count >= 3769) {
+          setSoldOut(true);
+        }
       } catch (error) {
         setCurrentMintCount(400);
       }
@@ -288,6 +292,11 @@ export default function HomePage() {
             <hr className="red-line" />
           </div>
           <div className="img-section">
+            <div className="mint-live-count">
+              <p className="mint-count red-color-text">{`${currentMintCount}`}</p>
+              <p>{"  /  "}</p>
+              <p className="total-count">3769</p>
+            </div>
             <img src={getCountImage()} alt="mad man" className="candle-img" />
 
             {/* <div className="candle"></div> */}
@@ -379,7 +388,18 @@ export default function HomePage() {
             </div>
             {soldOut ? (
               <div className="sold-out">
-                <h2 className="red-color-text">Sorry, we are out of PUMPS!</h2>
+                <h2 className="red-color-text">Sorry, we are out of PUMPS!,</h2>
+                <h2 className="red-color-text">
+                  buy on{" "}
+                  <span
+                    className="blue-color-text pointer"
+                    onClick={() => {
+                      // constants.openSeaLink();
+                    }}
+                  >
+                    Opensea
+                  </span>
+                </h2>
               </div>
             ) : (
               <div>

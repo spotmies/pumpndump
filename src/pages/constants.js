@@ -146,6 +146,12 @@ module.exports = Object.freeze({
       "_blank"
     );
   },
+  openSeaLink: () => {
+    window.open(
+      "https://twitter.com/sakamabals?t=R9wTQ3cpjo1pwbq4QGX09A&s=09",
+      "_blank"
+    );
+  },
 
   images: [
     {

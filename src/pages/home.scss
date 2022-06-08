@@ -480,8 +480,20 @@ margin: auto !important;
 }
 
 
-
+.mint-live-count{
+    font-size: 36px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 60px;
+    
+}
 @media screen and (max-width: 498px) {
+    .mint-live-count {
+        margin-left: 160px !important;
+//         width: 100% !important;
+// margin: 0 auto !important;
+    
+    }
 .number-input{
   
 
