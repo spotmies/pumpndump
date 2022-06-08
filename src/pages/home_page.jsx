@@ -23,6 +23,7 @@ export default function HomePage() {
   const [soldOut, setSoldOut] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
+  const [currentMintCount, setCurrentMintCount] = useState(0);
   const [walletAddress, setWalletAddress] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [chainId, setChainId] = useState(1);
@@ -51,6 +52,63 @@ export default function HomePage() {
         {hideAns ? null : <p className="faq-ans">{answer} </p>}
       </div>
     );
+  };
+
+  const getCountImage = () => {
+    const totalMintCount = 3769;
+
+    const listImage = constants.images;
+    if (currentMintCount >= 0 && currentMintCount < 236) {
+      return listImage[1].url;
+    }
+    if (currentMintCount >= 236 && currentMintCount < 472) {
+      return listImage[2].url;
+    }
+    if (currentMintCount >= 472 && currentMintCount < 708) {
+      return listImage[3].url;
+    }
+    if (currentMintCount >= 708 && currentMintCount < 944) {
+      return listImage[4].url;
+    }
+    if (currentMintCount >= 944 && currentMintCount < 1180) {
+      return listImage[5].url;
+    }
+    if (currentMintCount >= 1180 && currentMintCount < 1416) {
+      return listImage[6].url;
+    }
+    if (currentMintCount >= 1416 && currentMintCount < 1652) {
+      return listImage[7].url;
+    }
+    if (currentMintCount >= 1652 && currentMintCount < 1888) {
+      return listImage[8].url;
+    }
+    if (currentMintCount >= 1888 && currentMintCount < 2124) {
+      return listImage[9].url;
+    }
+    if (currentMintCount >= 2124 && currentMintCount < 2360) {
+      return listImage[10].url;
+    }
+    if (currentMintCount >= 2360 && currentMintCount < 2596) {
+      return listImage[11].url;
+    }
+    if (currentMintCount >= 2596 && currentMintCount < 2832) {
+      return listImage[12].url;
+    }
+    if (currentMintCount >= 2832 && currentMintCount < 3068) {
+      return listImage[13].url;
+    }
+    if (currentMintCount >= 3068 && currentMintCount < 3304) {
+      return listImage[14].url;
+    }
+
+    if (currentMintCount >= 3304 && currentMintCount < 3540) {
+      return listImage[15].url;
+    }
+    if (currentMintCount >= 3540 && currentMintCount < 3776) {
+      return listImage[16].url;
+    }
+
+    return listImage[0].url;
   };
 
   useEffect(() => {
@@ -86,6 +144,7 @@ export default function HomePage() {
         // setWalletText(true);
         gaWalletTracker("wallet-connected");
         setWallets(accounts[0].slice(-4));
+        console.log(accounts[0]);
         setWalletAddress(accounts[0]);
       } catch (error) {
         // console.log("Error connecting....");
@@ -137,6 +196,13 @@ export default function HomePage() {
       const TotalMinted = await getContract().totalSupply();
       console.log("totalMinted", TotalMinted);
       console.log(parseInt(TotalMinted._hex, 16));
+      try {
+        setCurrentMintCount(parseInt(TotalMinted._hex, 16));
+      } catch (error) {
+        setCurrentMintCount(400);
+      }
+
+      // setCurrentMintCount(3769);
     } catch (err) {
       console.log("mintcount error", err);
     }
@@ -222,7 +288,8 @@ export default function HomePage() {
             <hr className="red-line" />
           </div>
           <div className="img-section">
-            <img src={image} alt="mad man" className="candle-img" />
+            <img src={getCountImage()} alt="mad man" className="candle-img" />
+
             {/* <div className="candle"></div> */}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import constants from "./constants";
 
 /* ------------------------------ TIMER METHODS ----------------------------- */
 // const futureDate = new Date(2022, 6, 6, 9, 30, 0);
@@ -6,12 +7,21 @@ const gmtValue = new Date().toString().slice(25, 33).trim();
 console.log("currentTime", new Date().toString());
 console.log("gmtValue:", gmtValue);
 // const gmtValue = "GMT-0400";
-const futureDate = new Date(1654704000000);
-// const futureDate = new Date(`Web Jun 08 2022 21:30:00 ${gmtValue}`);
-// const whiteListMintDate = new Date(`Web Jun 08 2022 21:00:00 ${gmtValue}`);
-const whiteListMintDate = new Date(1654702200000);
+
+// const futureDate = new Date(`Web Jun 08 2022 19:50:00 ${gmtValue}`);
+// const whiteListMintDate = new Date(`Web Jun 08 2022 21:15:00 ${gmtValue}`);
+
 // const futureDate = new Date(`Tue Jun 07 2022 13:40:00 ${gmtValue}`);
 // const whiteListMintDate = new Date(`Tue Jun 07 2022 13:10:00 ${gmtValue}`);
+
+//producttion
+//1654703100000 9:15 white list timestamp
+//1654704000000 9:30 white list timestamp
+//1654702200000 // 9:00 timestamp
+
+const futureDate = new Date(1654704000000);
+const whiteListMintDate = new Date(1654702200000);
+const whiteListMsgDate = new Date(1654703100000);
 
 console.log("futureDate: ", futureDate);
 
@@ -52,7 +62,7 @@ export default function TimeCountDown(props) {
   return (
     <div className="count-down">
       <h2 className="red-color-text">
-        {new Date() > whiteListMintDate
+        {new Date() > whiteListMsgDate
           ? "WhiteList Mint is live now! click on mint below to mint"
           : "Hold your piss for some more time."}
       </h2>
@@ -60,11 +70,41 @@ export default function TimeCountDown(props) {
         <span
           className="mint-parent"
           onClick={() => {
-            if (new Date() > whiteListMintDate) {
-              props.trigger(true);
-            } else {
-              alert("mint not yet started");
+            if (props.wallet === "") {
+              // alert("Please connect your wallet");
+              if (props.requestAccount != null) props?.requestAccount();
+            } else if (props.wallet !== "") {
+              const isInWhiteList = constants.whiteListIds.includes(
+                props.walletAddress.toString()
+              );
+
+              const isInWhiteList2 = constants.whiteListIds2.includes(
+                props.walletAddress.toString()
+              );
+
+              console.log("isInWhiteList", isInWhiteList, props.walletAddress);
+              if (isInWhiteList || isInWhiteList2) {
+                // is in white list
+                if (new Date() > whiteListMintDate) {
+                  props.trigger2(true);
+                } else {
+                  alert("Mint time not yet started");
+                }
+              } else {
+                // is not in white list
+                if (new Date() > futureDate) {
+                  props.trigger2(true);
+                } else {
+                  alert("Mint time not yet started");
+                }
+              }
             }
+
+            // if (new Date() > whiteListMintDate) {
+            //   props.trigger(true);
+            // } else {
+            //   alert("mint not yet started");
+            // }
 
             // // if (new Date() > whiteListMintDate) {
             // //   props.trigger2(true);
