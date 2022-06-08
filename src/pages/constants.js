@@ -147,10 +147,7 @@ module.exports = Object.freeze({
     );
   },
   openSeaLink: () => {
-    window.open(
-      "https://twitter.com/sakamabals?t=R9wTQ3cpjo1pwbq4QGX09A&s=09",
-      "_blank"
-    );
+    window.open("https://opensea.io/collection/pum-pend-ump", "_blank");
   },
 
   images: [

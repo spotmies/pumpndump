@@ -394,7 +394,7 @@ export default function HomePage() {
                   <span
                     className="blue-color-text pointer"
                     onClick={() => {
-                      // constants.openSeaLink();
+                      constants.openSeaLink();
                     }}
                   >
                     Opensea
