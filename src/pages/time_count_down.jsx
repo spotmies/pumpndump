@@ -61,12 +61,30 @@ export default function TimeCountDown(props) {
           className="mint-parent"
           onClick={() => {
             if (new Date() > whiteListMintDate) {
-              props.trigger2(true);
-              return;
+              props.trigger(true);
             }
-            alert(
-              `If you're whitelist person wait untill ${whiteListMintDate}, otherwise you have to wait for ${futureDate} to mint.`
-            );
+
+            // // if (new Date() > whiteListMintDate) {
+            // //   props.trigger2(true);
+            // //   return;
+            // // } else
+            // if (props.wallet === "") {
+            //   // if user not connect to wallet
+            //   // alert("Please connect your wallet");
+            //   if (props.requestAccount != null) props?.requestAccount();
+            // } else if (props.wallet !== "") {
+            //   //if your wallet is connected
+            //   if (new Date() < whiteListMintDate) {
+            //     alert("mint not yet started");
+            //     // if (checkIsUserInWhiteList()) {
+            //     //   //show mint button
+            //     //   props.trigger2(true);
+            //     // }
+            //   }
+            // }
+            // // alert(
+            // //   `If you're whitelist person wait untill ${whiteListMintDate}, otherwise you have to wait for ${futureDate} to mint.`
+            // // );
           }}
         >
           <h2 className="mint-name blue-color-text">Mint date</h2>

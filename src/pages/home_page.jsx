@@ -23,6 +23,7 @@ export default function HomePage() {
   const [soldOut, setSoldOut] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [chainId, setChainId] = useState(1);
 
@@ -60,6 +61,7 @@ export default function HomePage() {
         wallets === ""
       ) {
         setWallets(window.ethereum.selectedAddress.slice(-4));
+        setWalletAddress(window?.ethereum?.selectedAddress);
       }
     }, 1000);
     setTimeout(() => {
@@ -84,6 +86,7 @@ export default function HomePage() {
         // setWalletText(true);
         gaWalletTracker("wallet-connected");
         setWallets(accounts[0].slice(-4));
+        setWalletAddress(accounts[0]);
       } catch (error) {
         // console.log("Error connecting....");
         alert(error);
@@ -317,6 +320,9 @@ export default function HomePage() {
               <div>
                 {!mintStart ? (
                   <TimeCountDown
+                    requestAccount={requestAccount}
+                    walletAddress={walletAddress}
+                    wallet={wallets}
                     trigger1={() => {}}
                     trigger2={(val) => {
                       setMintStart(val ?? false);
