@@ -62,6 +62,8 @@ export default function TimeCountDown(props) {
           onClick={() => {
             if (new Date() > whiteListMintDate) {
               props.trigger(true);
+            } else {
+              alert("mint not yet started");
             }
 
             // // if (new Date() > whiteListMintDate) {
