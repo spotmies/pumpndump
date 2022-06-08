@@ -20,10 +20,10 @@ import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
-  const [soldOut, setSoldOut] = useState(false);
+  const [soldOut, setSoldOut] = useState(true);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
-  const [currentMintCount, setCurrentMintCount] = useState(0);
+  const [currentMintCount, setCurrentMintCount] = useState(3769);
   const [walletAddress, setWalletAddress] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [chainId, setChainId] = useState(1);
@@ -32,7 +32,6 @@ export default function HomePage() {
   const gaWalletTracker = useAnalyticsEventTracker("wallet");
   const gaMintTracker = useAnalyticsEventTracker("mint");
   const gaOtherTracker = useAnalyticsEventTracker("others");
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const handleOpen = () => {
     setOpen(true);
@@ -158,12 +157,17 @@ export default function HomePage() {
   }
 
   const getChainId = async () => {
-    const { chainId } = await provider.getNetwork();
-    console.log("chainId", chainId);
-    setChainId(chainId);
+    try {
+      const provider = new ethers.providers.Web3Provider(window?.ethereum);
+      const { chainId } = await provider.getNetwork();
+      console.log("chainId", chainId);
+      setChainId(chainId);
 
-    if (chainId !== 1) {
-      alert("Please connect to Ethereum Mainnet");
+      if (chainId !== 1) {
+        alert("Please connect to Ethereum Mainnet");
+      }
+    } catch (error) {
+      console.log("Error connecting....");
     }
   };
 
@@ -188,7 +192,8 @@ export default function HomePage() {
     // const TotalMinted = await getContract().suppliedNFTs();
 
     if (!window.ethereum) {
-      alert("Metamask not detected");
+      //alert("Metamask not detected");
+      console.log("Metamask not detected");
       return;
     }
 
