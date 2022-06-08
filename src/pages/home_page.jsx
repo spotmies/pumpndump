@@ -20,7 +20,7 @@ import useAnalyticsEventTracker from "./useAnalyticsEventTracker";
 export default function HomePage() {
   const [open, setOpen] = useState(false);
   const [mintStart, setMintStart] = useState(false);
-  const [soldOut, setSoldOut] = useState(true);
+  const [soldOut, setSoldOut] = useState(false);
   const handleMintStart = () => setMintStart(true);
   const [wallets, setWallets] = useState("");
   const [currentMintCount, setCurrentMintCount] = useState(0);
