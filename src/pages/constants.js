@@ -149,6 +149,11 @@ module.exports = Object.freeze({
   openSeaLink: () => {
     window.open("https://opensea.io/collection/pum-pend-ump", "_blank");
   },
+  etherScan: () => {
+    window.open(
+      "https://etherscan.io/address/0x41187d5E6DA8BFF81ABD46cEDAcc3EE602aC5230"
+    );
+  },
 
   images: [
     {

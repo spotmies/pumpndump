@@ -269,7 +269,12 @@ export default function HomePage() {
               constants.openSeaLink();
             }}
           />
-          <img src={etherScanIcon} className="icon-2 pointer" alt="" />
+          <img
+            src={etherScanIcon}
+            className="icon-2 pointer"
+            alt=""
+            onClick={constants.etherScan}
+          />
           {/* <img
             src={connectWalleteIcon}
             className="icon-3 pointer"
