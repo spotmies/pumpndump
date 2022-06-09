@@ -6,7 +6,7 @@ module.exports = Object.freeze({
     },
     {
       q: "Day 2",
-      ans: "List at 0.09 or higher in secondary market to get that sweet sweet volume… Fu*k Goblinss Go lines..!",
+      ans: "We are proud to announce that we're collaborating with a well known independent artist in the space with a Mexican Background💀… reveal will happen tomorrow (Day 3),  You'll see the artist and the revealed artwork tomorrow.! Ps. We're all gonna …………..☠️",
     },
     {
       q: "Day 3",

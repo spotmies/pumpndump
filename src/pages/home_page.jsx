@@ -4,6 +4,7 @@ import "./home.scss";
 import image from "./images/zero_candle.png";
 import NumberInput from "./numberInput";
 import contractabi from "../abi.json";
+import tick from "./images/tick.png";
 
 import { ethers } from "ethers";
 import loader from "./images/loader.png";
@@ -523,11 +524,11 @@ export default function HomePage() {
           <p className="blue-color-text the-plan"> (The Plan)</p>
           {constants.roadMapList.map((item, key) => (
             <div key={key}>
-              {key == 0 ? (
+              {key === 0 || key === 1 ? (
                 <div key={key} className="tick-div">
                   {" "}
-                  {faqCard(item.q, item.ans, false, true)}
-                  {/* <img src={tick} className="tick" /> */}
+                  {faqCard(item.q, item.ans, false, key === 1 ? true : false)}
+                  <>{key === 0 && <img src={tick} className="tick" />}</>
                 </div>
               ) : null}
             </div>
