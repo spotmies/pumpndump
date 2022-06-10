@@ -524,11 +524,15 @@ export default function HomePage() {
           <p className="blue-color-text the-plan"> (The Plan)</p>
           {constants.roadMapList.map((item, key) => (
             <div key={key}>
-              {key === 0 || key === 1 ? (
+              {key === 0 || key === 1 || key === 2 ? (
                 <div key={key} className="tick-div">
                   {" "}
-                  {faqCard(item.q, item.ans, false, key === 1 ? true : false)}
-                  <>{key === 0 && <img src={tick} className="tick" />}</>
+                  {faqCard(item.q, item.ans, false, key === 2 ? true : false)}
+                  <>
+                    {key === 0 || key === 1 ? (
+                      <img src={tick} className="tick" />
+                    ) : null}
+                  </>
                 </div>
               ) : null}
             </div>

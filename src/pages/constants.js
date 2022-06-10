@@ -10,7 +10,7 @@ module.exports = Object.freeze({
     },
     {
       q: "Day 3",
-      ans: "Stop undercuttin Eachother A*SH*LEs, we have a goal to reach.. List at 0.2 or higher",
+      ans: "We're sorry to announce that there will be no reveal, Artist stood us up due to the low activity and the quick dump right after selling out.. if you're in our discord you'll be able to DM @Natoshi to talk about the gas refunds, We will try and Fix the Issue as soon as possible, Hold on to your PUMPS everyone, THIS IS NOT A RUG.!",
     },
     {
       q: "Day 4",
