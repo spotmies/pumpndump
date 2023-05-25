@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# PumpNDump Project README
+![image](https://github.com/spotmies/pumpndump/assets/90003260/da84707a-4bc7-470a-81b5-6ab9bc53569f)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Available Scripts
+## Introduction
+This README provides an overview of the PumpNDump project. The project aims to facilitate trading activities and provide insights into pump and dump schemes in the cryptocurrency market. It is built using React, Firebase, and other dependencies. This document will guide you through the installation and usage of the project.
 
-In the project directory, you can run:
+## Installation
+To install the project and its dependencies, follow the steps below:
 
-### `npm start`
+1. Clone the repository to your local machine:
+```bash
+gh repo clone spotmies/pumpndump
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Navigate to the project directory:
+```bash
+cd pumpndump
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Install the required dependencies by running the following command:
+```bash
+npm install
+```
 
-### `npm test`
+This command will read the `package.json` file and install all the dependencies listed in the `"dependencies"` section.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+To use the PumpNDump project, follow the steps below:
 
-### `npm run build`
+1. Ensure that all dependencies are successfully installed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Customize the project files to suit your specific requirements. Modify the necessary configuration files, such as Firebase configuration files or any other environment-specific settings.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Start the development server:
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This command will start the development server and allow you to preview and make changes to the project. The server will automatically reload whenever you save any file.
 
-### `npm run eject`
+4. Open your web browser and navigate to `http://localhost:3000` to see the running application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. You're now ready to use the PumpNDump project!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Note: The provided scripts can also be used for building, testing, ejecting, or deploying the project. Refer to the [Scripts](#scripts) section for more details.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Dependencies
+The project relies on the following dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- @testing-library/jest-dom: A set of custom jest matchers for testing DOM elements.
+- @testing-library/react: A library for testing React components.
+- @testing-library/user-event: A library for simulating user events in testing React components.
+- ethers: A library for interacting with Ethereum and Ethereum-like blockchains.
+- firebase: The JavaScript SDK for Firebase, providing tools and services for the web.
+- firebase-tools: The Firebase CLI for deploying and managing Firebase projects.
+- node-sass: A library for compiling Sass to CSS.
+- react: A JavaScript library for building user interfaces.
+- react-dom: The entry point to the DOM and server renderers for React.
+- react-router-dom: A library for routing in React applications.
+- react-scripts: A set of scripts and configuration used by Create React App.
+- web-vitals: A library for measuring web vitals performance metrics.
 
-## Learn More
+## Scripts
+The project includes the following predefined scripts:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `start`: Starts the development server.
+- `build`: Builds the project for production.
+- `test`: Runs tests for the project.
+- `eject`: Ejects the project configuration from Create React App.
+- `predeploy`: Runs the build script before deployment.
+- `deploy`: Deploys the project using gh-pages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To execute a script, run the following command:
+```bash
+npm run <script-name>
+```
 
-### Code Splitting
+## Contributing
+Contributions to the project are welcome. If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on the project's repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
+This project is licensed under the `BSD 3-Clause License`. See the `LICENSE` file for more information
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
